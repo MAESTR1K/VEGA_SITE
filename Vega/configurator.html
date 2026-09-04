@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VEGA PPF — 3D Конфигуратор</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link rel="icon" href="фото/logo/logo.png.webp" type="image/jpeg">
+    <style>
+        /* ===== БАЗА ===== */
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #0d0d0d;
+            color: #fff;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* ===== ШАПКА ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(13, 13, 13, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .header__inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            pointer-events: auto;
+        }
+        .logo__icon {
+            font-size: 1.8rem;
+            color: #fa553f;
+            font-weight: 900;
+        }
+        .logo__text {
+            color: #fff;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .logo__accent {
+            color: #fa553f;
+        }
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        .nav a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s;
+            padding: 4px 0;
+            position: relative;
+        }
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #fa553f;
+            transition: width 0.3s;
+        }
+        .nav a:hover {
+            color: #fff;
+        }
+        .nav a:hover::after {
+            width: 100%;
+        }
+        .nav__back {
+            color: #fa553f !important;
+            font-weight: 600;
+        }
+        .nav__back::after {
+            background: #fa553f !important;
+        }
+        .header__phone {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1rem;
+            padding-left: 20px;
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .header__phone:hover {
+            color: #fa553f;
+        }
+
+        /* ===== 3D КОНТЕЙНЕР ===== */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* ===== ЦВЕТА ===== */
+        .color-picker {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 16px 28px;
+            background: rgba(20,20,20,0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 60px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 12px 48px rgba(0,0,0,0.6);
+            pointer-events: auto;
+            max-width: 90%;
+        }
+        .color-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            position: relative;
+            flex-shrink: 0;
+        }
+        .color-btn:hover { transform: scale(1.2); border-color: rgba(255,255,255,0.6); }
+        .color-btn.active { border-color: #ffffff; transform: scale(1.15); box-shadow: 0 0 24px rgba(255,255,255,0.15); }
+        .color-btn .tooltip {
+            position: absolute;
+            bottom: 54px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            border-radius: 6px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            font-weight: 500;
+        }
+        .color-btn:hover .tooltip { opacity: 1; }
+
+        /* ===== СТАТУСЫ ===== */
+        .loading-status {
+            position: fixed;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 15;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+            pointer-events: none;
+            text-align: center;
+            max-width: 80%;
+        }
+        .selected-info {
+            position: fixed;
+            bottom: 110px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 16;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(8px);
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.7);
+            pointer-events: none;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .selected-info.visible { opacity: 1; }
+
+        /* ===== АДАПТИВ ===== */
+        @media (max-width: 768px) {
+            .header__inner { padding: 0 20px; flex-wrap: wrap; gap: 8px; }
+            .logo__text { font-size: 1.1rem; }
+            .logo__icon { font-size: 1.4rem; }
+            .nav { gap: 12px; flex-wrap: wrap; justify-content: center; }
+            .nav a { font-size: 0.75rem; }
+            .header__phone { font-size: 0.8rem; padding-left: 12px; }
+            .color-picker { bottom: 24px; padding: 12px 18px; gap: 10px; border-radius: 40px; max-width: 95%; }
+            .color-btn { width: 36px; height: 36px; }
+            .loading-status { bottom: 100px; font-size: 0.7rem; }
+            .selected-info { bottom: 90px; font-size: 0.7rem; }
+        }
+        @media (max-width: 480px) {
+            .header__inner { padding: 0 16px; }
+            .nav a { font-size: 0.65rem; }
+            .nav { gap: 8px; }
+            .header__phone { font-size: 0.7rem; padding-left: 8px; }
+            .color-btn { width: 30px; height: 30px; }
+            .color-picker { gap: 6px; padding: 10px 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== ШАПКА ===== -->
+    <header class="header">
+        <div class="header__inner">
+            <div class="logo">
+            <img src="фото/logo/logo.png.webp" alt="VEGA PPF" style="height:40px; width:auto; display:block;">
+            <span class="logo__text">VEGA <span class="logo__accent">PPF</span></span>
+        </div>
+            <nav class="nav">
+                <a href="index.html#products">Плёнки</a>
+                <a href="index.html#advantages">Преимущества</a>
+                <a href="index.html#contacts">Контакты</a>
+                <a href="index.html" class="nav__back">← На главную</a>
+            </nav>
+            <a href="tel:+78005550027" class="header__phone">8 (800) 555-00-27</a>
+        </div>
+    </header>
+
+    <!-- ===== 3D КОНТЕЙНЕР ===== -->
+    <div id="canvas-container"></div>
+
+    <!-- ===== СТАТУСЫ ===== -->
+    <div class="loading-status" id="loadingStatus">⏳ Загрузка модели...</div>
+    <div class="selected-info" id="selectedInfo">Выберите цвет</div>
+
+    <!-- ===== ЦВЕТА ===== -->
+    <div class="color-picker" id="colorPicker"></div>
+
+    <!-- ===== THREE.JS ===== -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+        // 1. ЦВЕТА VEGA PPF
+        const COLORS = [
+            { name: 'Белый', hex: '#ffffff' },
+            { name: 'Ferrari Red', hex: '#dc143c' },
+            { name: 'Royal Blue', hex: '#1a4b8c' },
+            { name: 'Nardo Grey', hex: '#9b9b9b' },
+            { name: 'Liquid Silver', hex: '#b0b5b9' },
+            { name: 'Tiffany Blue', hex: '#81d8d0' },
+            { name: 'AMG Grey', hex: '#6d6d6d' },
+        ];
+
+        // 2. ПЕРЕМЕННЫЕ
+        let carGroup = new THREE.Group();
+        let bodyMesh = null;
+
+        const container = document.getElementById('canvas-container');
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        // 3. СЦЕНА
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xf3f3f3);
+
+        const camera = new THREE.PerspectiveCamera(35, width / height, 0.1, 100);
+        camera.position.set(2.8, 1.2, 4.0);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.1;
+        container.appendChild(renderer.domElement);
+
+        // 4. УПРАВЛЕНИЕ
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.target.set(0, 0.3, 0);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.minDistance = 0.8;
+        controls.maxDistance = 8.0;
+        controls.maxPolarAngle = Math.PI / 2.1;
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 0.8;
+        controls.update();
+
+        // 5. СВЕТ
+        const ambient = new THREE.AmbientLight(0x404060, 0.3);
+        scene.add(ambient);
+
+        const keyLight = new THREE.DirectionalLight(0xffeedd, 2.8);
+        keyLight.position.set(3, 5, 4);
+        keyLight.castShadow = true;
+        keyLight.shadow.mapSize.width = 1024;
+        keyLight.shadow.mapSize.height = 1024;
+        scene.add(keyLight);
+
+        const fillLight = new THREE.DirectionalLight(0x6688cc, 0.5);
+        fillLight.position.set(-4, 2, 3);
+        scene.add(fillLight);
+
+        const rimLight = new THREE.DirectionalLight(0xffffff, 1.5);
+        rimLight.position.set(-1, 2, -5);
+        scene.add(rimLight);
+
+        const bottomLight = new THREE.DirectionalLight(0x4466aa, 0.2);
+        bottomLight.position.set(0, -3, 2);
+        scene.add(bottomLight);
+
+        // 6. ФУНКЦИЯ СМЕНЫ ЦВЕТА
+        function applyColor(hex) {
+            const color = new THREE.Color(hex);
+
+            if (bodyMesh) {
+                const materials = Array.isArray(bodyMesh.material) ? bodyMesh.material : [bodyMesh.material];
+                materials.forEach(mat => {
+                    if (mat && mat.color) {
+                        mat.color.copy(color);
+                        mat.needsUpdate = true;
+                    }
+                });
+                updateInfo(hex);
+            } else {
+                console.warn('❌ Кузов не найден');
+            }
+        }
+
+        function updateInfo(hex) {
+            const info = document.getElementById('selectedInfo');
+            const color = COLORS.find(c => c.hex === hex);
+            if (color) {
+                info.textContent = `🎨 ${color.name}`;
+                info.classList.add('visible');
+            }
+        }
+
+        // 7. ЗАГРУЗКА МОДЕЛИ
+        const statusEl = document.getElementById('loadingStatus');
+        const loader = new GLTFLoader();
+
+        let loadedCount = 0;
+        const totalModels = 2;
+
+        function setStatus(text, isError = false) {
+            statusEl.textContent = text;
+            statusEl.style.color = isError ? '#fa553f' : 'rgba(255,255,255,0.5)';
+        }
+
+        function onModelLoaded() {
+            loadedCount++;
+            if (loadedCount === totalModels) {
+                setStatus('✅ Модель загружена');
+                controls.autoRotate = false;
+                setTimeout(() => applyColor('#ffffff'), 100);
+            }
+        }
+
+        // 7.1 ЗАГРУЗКА КУЗОВА
+        loader.load(
+            'kuzov.glb',
+            (gltf) => {
+                const group = gltf.scene;
+                group.rotation.y = Math.PI;
+                group.scale.set(0.5, 0.5, 0.5);
+
+                group.traverse((child) => {
+                    if (child.isMesh) {
+                        const name = child.name.toLowerCase();
+                        if (name === 'kuzov' || name.includes('kuzov')) {
+                            bodyMesh = child;
+                            console.log('✅ Найден кузов');
+                        }
+                    }
+                });
+
+                if (!bodyMesh) {
+                    group.traverse((child) => {
+                        if (child.isMesh && !bodyMesh) {
+                            bodyMesh = child;
+                            console.log('⚠️ Кузов не найден, используем первый меш');
+                        }
+                    });
+                }
+
+                carGroup.add(group);
+                onModelLoaded();
+                console.log('Кузов загружен');
+            },
+            (xhr) => {
+                const progress = Math.round((xhr.loaded / xhr.total) * 100);
+                setStatus(`⏳ Загрузка кузова ${progress}%`);
+            },
+            (error) => {
+                console.error('❌ Ошибка загрузки кузова:', error);
+                setStatus('❌ Файл kuzov.glb не найден', true);
+            }
+        );
+
+        // 7.2 ЗАГРУЗКА ДЕТАЛЕЙ
+        loader.load(
+            'urus_parts.glb',
+            (gltf) => {
+                const group = gltf.scene;
+                group.rotation.y = Math.PI;
+                group.scale.set(50, 50, 50);
+                group.position.set(0, 0, 0.01);
+
+                // Исправляем чёрные детали
+                group.traverse((child) => {
+                    if (child.isMesh) {
+                        const name = child.name.toLowerCase();
+                        if (name.includes('kuzov') || name.includes('body')) return;
+
+                        if (child.material) {
+                            const materials = Array.isArray(child.material) ? child.material : [child.material];
+                            materials.forEach(mat => {
+                                if (mat.color && mat.color.getHex() === 0x000000) {
+                                    mat.color.setHex(0x2a2a2a);
+                                }
+                                if (mat instanceof THREE.MeshPhysicalMaterial) {
+                                    mat.metalness = 0.3;
+                                    mat.roughness = 0.4;
+                                    mat.envMapIntensity = 0.8;
+                                }
+                                mat.needsUpdate = true;
+                            });
+                        }
+                    }
+                });
+
+                carGroup.add(group);
+                onModelLoaded();
+                console.log('Детали загружены');
+            },
+            (xhr) => {
+                const progress = Math.round((xhr.loaded / xhr.total) * 100);
+                setStatus(`⏳ Загрузка деталей ${progress}%`);
+            },
+            (error) => {
+                console.error('❌ Ошибка загрузки деталей:', error);
+                setStatus('❌ Файл urus_parts.glb не найден', true);
+            }
+        );
+
+        scene.add(carGroup);
+
+        // 8. ПОЛ
+        const floorGeo = new THREE.PlaneGeometry(20, 20);
+        const floorMat = new THREE.MeshStandardMaterial({
+            color: 0x181818,
+            metalness: 0.4,
+            roughness: 0.5,
+            transparent: true,
+            opacity: 0.6,
+        });
+        const floor = new THREE.Mesh(floorGeo, floorMat);
+        floor.rotation.x = -Math.PI / 2;
+        floor.position.y = -0.05;
+        floor.receiveShadow = true;
+        scene.add(floor);
+
+        // 9. КНОПКИ ЦВЕТОВ
+        const colorPicker = document.getElementById('colorPicker');
+
+        COLORS.forEach((c) => {
+            const btn = document.createElement('button');
+            btn.className = 'color-btn';
+            btn.style.background = c.hex;
+            btn.dataset.hex = c.hex;
+            btn.dataset.name = c.name;
+
+            if (c.hex === '#ffffff') btn.style.borderColor = 'rgba(255,255,255,0.3)';
+            if (c.hex === '#1a1a1a') btn.style.borderColor = 'rgba(255,255,255,0.15)';
+
+            const tooltip = document.createElement('span');
+            tooltip.className = 'tooltip';
+            tooltip.textContent = c.name;
+            btn.appendChild(tooltip);
+
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.color-btn').forEach((b) => b.classList.remove('active'));
+                btn.classList.add('active');
+                applyColor(c.hex);
+            });
+
+            if (c.hex === '#ffffff') btn.classList.add('active');
+            colorPicker.appendChild(btn);
+        });
+
+        // 10. РЕСАЙЗ И АНИМАЦИЯ
+        window.addEventListener('resize', () => {
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+            renderer.setSize(w, h);
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        console.log('🚗 VEGA PPF — 3D Конфигуратор');
+    </script>
+
+</body>
+</html>
