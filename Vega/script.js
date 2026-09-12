@@ -1,14 +1,47 @@
-// 1. БУРГЕР-МЕНЮ
-const burger = document.querySelector('.burger');
-const nav = document.querySelector('.nav');
+// ============================================================
+// БУРГЕР-МЕНЮ
+// ============================================================
+const burger = document.getElementById('burgerBtn');
+const nav = document.getElementById('mobileNav');
 
 if (burger && nav) {
-    burger.addEventListener('click', () => {
+    // Открытие/закрытие по клику на бургер
+    burger.addEventListener('click', (e) => {
+        e.stopPropagation();
         nav.classList.toggle('active');
         burger.classList.toggle('active');
+        document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
+    });
+
+    // Закрытие при клике на ссылку
+    nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('active');
+            burger.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+
+    // Закрытие при клике вне меню
+    document.addEventListener('click', (e) => {
+        if (nav.classList.contains('active') &&
+            !nav.contains(e.target) &&
+            !burger.contains(e.target)) {
+            nav.classList.remove('active');
+            burger.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Закрытие по Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && nav.classList.contains('active')) {
+            nav.classList.remove('active');
+            burger.classList.remove('active');
+            document.body.style.overflow = '';
+        }
     });
 }
-
 // 2. ПЛАВНАЯ ПРОКРУТКА
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
