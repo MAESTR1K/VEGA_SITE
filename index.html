@@ -12,27 +12,30 @@
 <body>
     <!-- ШАПКА -->
     <header class="header">
-        <div class="container header__inner">
-            <div class="logo">
-                <img src="фото/logo/logo.png.webp" alt="logo">
-                <span class="logo__text">VEGA <span class="logo__accent">PPF</span></span>
-            </div>
-            <nav class="nav">
-                <a href="#configurator">3D-конфигуратор</a>
-                <a href="#about">О бренде</a>
-                <a href="#history">История</a>
-                <a href="#steps">Как работаем</a>
-                <a href="#blog">Блог</a>
-                <a href="#products">Продукция</a>
-                <a href="#advantages">Преимущества</a>
-                <a href="#contacts">Контакты</a>
-            </nav>
-            <a href="tel:+78005550027" class="header__phone">8 (800) 555-00-27</a>
-            <button class="burger" aria-label="Меню">
-                <span></span><span></span><span></span>
-            </button>
+    <div class="container header__inner">
+        <div class="logo">
+            <img src="фото/logo/logo.png.webp" alt="logo">
+            <span class="logo__text">VEGA <span class="logo__accent">PPF</span></span>
         </div>
-    </header>
+
+        <nav class="nav" id="mobileNav">
+            <a href="#configurator">3D-конфигуратор</a>
+            <a href="#about">О бренде</a>
+            <a href="#history">История</a>
+            <a href="#steps">Как работаем</a>
+            <a href="#blog">Блог</a>
+            <a href="#products">Продукция</a>
+            <a href="#advantages">Преимущества</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+
+        <a href="tel:+78005550027" class="header__phone">8 (800) 555-00-27</a>
+
+        <button class="burger" id="burgerBtn" aria-label="Меню">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
 
     <!-- ГЛАВНЫЙ ЭКРАН -->
     <section class="hero">
@@ -828,3 +831,5 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+

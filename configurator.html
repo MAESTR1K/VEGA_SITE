@@ -27,7 +27,7 @@
             background: rgba(13, 13, 13, 0.92);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            padding: 20px 0;
+            padding: 12px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
         .header__inner {
@@ -44,10 +44,10 @@
             gap: 12px;
             pointer-events: auto;
         }
-        .logo__icon {
-            font-size: 1.8rem;
-            color: #fa553f;
-            font-weight: 900;
+        .logo img {
+            height: 40px;
+            width: auto;
+            display: block;
         }
         .logo__text {
             color: #fff;
@@ -173,7 +173,7 @@
         /* ===== СТАТУСЫ ===== */
         .loading-status {
             position: fixed;
-            bottom: 120px;
+            bottom: 180px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 15;
@@ -187,10 +187,11 @@
             pointer-events: none;
             text-align: center;
             max-width: 80%;
+            transition: opacity 0.4s ease;
         }
         .selected-info {
             position: fixed;
-            bottom: 110px;
+            bottom: 140px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 16;
@@ -203,7 +204,7 @@
             pointer-events: none;
             text-align: center;
             opacity: 0;
-            transition: opacity 0.3s;
+            transition: opacity 0.4s ease;
         }
         .selected-info.visible { opacity: 1; }
 
@@ -211,14 +212,14 @@
         @media (max-width: 768px) {
             .header__inner { padding: 0 20px; flex-wrap: wrap; gap: 8px; }
             .logo__text { font-size: 1.1rem; }
-            .logo__icon { font-size: 1.4rem; }
+            .logo img { height: 32px; }
             .nav { gap: 12px; flex-wrap: wrap; justify-content: center; }
             .nav a { font-size: 0.75rem; }
             .header__phone { font-size: 0.8rem; padding-left: 12px; }
             .color-picker { bottom: 24px; padding: 12px 18px; gap: 10px; border-radius: 40px; max-width: 95%; }
             .color-btn { width: 36px; height: 36px; }
-            .loading-status { bottom: 100px; font-size: 0.7rem; }
-            .selected-info { bottom: 90px; font-size: 0.7rem; }
+            .loading-status { bottom: 150px; font-size: 0.7rem; }
+            .selected-info { bottom: 110px; font-size: 0.7rem; }
         }
         @media (max-width: 480px) {
             .header__inner { padding: 0 16px; }
@@ -236,9 +237,9 @@
     <header class="header">
         <div class="header__inner">
             <div class="logo">
-            <img src="фото/logo/logo.png.webp" alt="VEGA PPF" style="height:40px; width:auto; display:block;">
-            <span class="logo__text">VEGA <span class="logo__accent">PPF</span></span>
-        </div>
+                <img src="фото/logo/logo.png.webp" alt="VEGA PPF">
+                <span class="logo__text">VEGA <span class="logo__accent">PPF</span></span>
+            </div>
             <nav class="nav">
                 <a href="index.html#products">Плёнки</a>
                 <a href="index.html#advantages">Преимущества</a>
@@ -274,7 +275,9 @@
         import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
         import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
+        // ============================================================
         // 1. ЦВЕТА VEGA PPF
+        // ============================================================
         const COLORS = [
             { name: 'Белый', hex: '#ffffff' },
             { name: 'Ferrari Red', hex: '#dc143c' },
@@ -285,7 +288,9 @@
             { name: 'AMG Grey', hex: '#6d6d6d' },
         ];
 
+        // ============================================================
         // 2. ПЕРЕМЕННЫЕ
+        // ============================================================
         let carGroup = new THREE.Group();
         let bodyMesh = null;
 
@@ -293,9 +298,11 @@
         const width = window.innerWidth;
         const height = window.innerHeight;
 
+        // ============================================================
         // 3. СЦЕНА
+        // ============================================================
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0xf3f3f3);
+        scene.background = new THREE.Color(0xffffff);
 
         const camera = new THREE.PerspectiveCamera(35, width / height, 0.1, 100);
         camera.position.set(2.8, 1.2, 4.0);
@@ -309,7 +316,9 @@
         renderer.toneMappingExposure = 1.1;
         container.appendChild(renderer.domElement);
 
+        // ============================================================
         // 4. УПРАВЛЕНИЕ
+        // ============================================================
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.target.set(0, 0.3, 0);
         controls.enableDamping = true;
@@ -321,7 +330,9 @@
         controls.autoRotateSpeed = 0.8;
         controls.update();
 
+        // ============================================================
         // 5. СВЕТ
+        // ============================================================
         const ambient = new THREE.AmbientLight(0x404060, 0.3);
         scene.add(ambient);
 
@@ -344,7 +355,9 @@
         bottomLight.position.set(0, -3, 2);
         scene.add(bottomLight);
 
+        // ============================================================
         // 6. ФУНКЦИЯ СМЕНЫ ЦВЕТА
+        // ============================================================
         function applyColor(hex) {
             const color = new THREE.Color(hex);
 
@@ -362,26 +375,49 @@
             }
         }
 
+        // ============================================================
+        // 6.1 ИНФО О ЦВЕТЕ (исчезает через 2.5 сек)
+        // ============================================================
+        let infoTimeout = null;
+
         function updateInfo(hex) {
             const info = document.getElementById('selectedInfo');
             const color = COLORS.find(c => c.hex === hex);
             if (color) {
                 info.textContent = `🎨 ${color.name}`;
                 info.classList.add('visible');
+
+                if (infoTimeout) clearTimeout(infoTimeout);
+                infoTimeout = setTimeout(() => {
+                    info.classList.remove('visible');
+                }, 2500);
             }
         }
 
+        // ============================================================
+        // 6.2 СТАТУС ЗАГРУЗКИ (исчезает через 3 сек)
+        // ============================================================
+        let statusTimeout = null;
+
+        function setStatus(text, isError = false) {
+            const el = document.getElementById('loadingStatus');
+            el.textContent = text;
+            el.style.color = isError ? '#fa553f' : 'rgba(255,255,255,0.5)';
+            el.style.opacity = '1';
+
+            if (statusTimeout) clearTimeout(statusTimeout);
+            statusTimeout = setTimeout(() => {
+                el.style.opacity = '0';
+            }, 3000);
+        }
+
+        // ============================================================
         // 7. ЗАГРУЗКА МОДЕЛИ
-        const statusEl = document.getElementById('loadingStatus');
+        // ============================================================
         const loader = new GLTFLoader();
 
         let loadedCount = 0;
         const totalModels = 2;
-
-        function setStatus(text, isError = false) {
-            statusEl.textContent = text;
-            statusEl.style.color = isError ? '#fa553f' : 'rgba(255,255,255,0.5)';
-        }
 
         function onModelLoaded() {
             loadedCount++;
@@ -392,7 +428,9 @@
             }
         }
 
+        // ============================================================
         // 7.1 ЗАГРУЗКА КУЗОВА
+        // ============================================================
         loader.load(
             'kuzov.glb',
             (gltf) => {
@@ -421,7 +459,7 @@
 
                 carGroup.add(group);
                 onModelLoaded();
-                console.log('Кузов загружен');
+                console.log('✅ Кузов загружен');
             },
             (xhr) => {
                 const progress = Math.round((xhr.loaded / xhr.total) * 100);
@@ -433,7 +471,9 @@
             }
         );
 
+        // ============================================================
         // 7.2 ЗАГРУЗКА ДЕТАЛЕЙ
+        // ============================================================
         loader.load(
             'urus_parts.glb',
             (gltf) => {
@@ -467,7 +507,7 @@
 
                 carGroup.add(group);
                 onModelLoaded();
-                console.log('Детали загружены');
+                console.log('✅ Детали загружены');
             },
             (xhr) => {
                 const progress = Math.round((xhr.loaded / xhr.total) * 100);
@@ -481,7 +521,9 @@
 
         scene.add(carGroup);
 
+        // ============================================================
         // 8. ПОЛ
+        // ============================================================
         const floorGeo = new THREE.PlaneGeometry(20, 20);
         const floorMat = new THREE.MeshStandardMaterial({
             color: 0x181818,
@@ -496,7 +538,9 @@
         floor.receiveShadow = true;
         scene.add(floor);
 
+        // ============================================================
         // 9. КНОПКИ ЦВЕТОВ
+        // ============================================================
         const colorPicker = document.getElementById('colorPicker');
 
         COLORS.forEach((c) => {
@@ -524,7 +568,9 @@
             colorPicker.appendChild(btn);
         });
 
+        // ============================================================
         // 10. РЕСАЙЗ И АНИМАЦИЯ
+        // ============================================================
         window.addEventListener('resize', () => {
             const w = window.innerWidth;
             const h = window.innerHeight;
