@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEGA PPF — Защитные плёнки</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="фото/logo/logo.png.webp" type="image/jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <!-- ШАПКА -->
+    <header class="header">
+        <div class="container header__inner">
+            <div class="logo">
+                <img src="фото/logo/logo.png.webp" alt="logo">
+                <span class="logo__text">VEGA <span class="logo__accent">PPF</span></span>
+            </div>
+            <nav class="nav">
+                <a href="#configurator">3D-конфигуратор</a>
+                <a href="#about">О бренде</a>
+                <a href="#history">История</a>
+                <a href="#steps">Как работаем</a>
+                <a href="#blog">Блог</a>
+                <a href="#products">Продукция</a>
+                <a href="#advantages">Преимущества</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+            <a href="tel:+78005550027" class="header__phone">8 (800) 555-00-27</a>
+            <button class="burger" aria-label="Меню">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ГЛАВНЫЙ ЭКРАН -->
+    <section class="hero">
+        <div class="container hero__inner">
+            <div class="hero__content">
+                <div class="hero__badge">Официальный представитель в Москве</div>
+                <h1 class="hero__title">Антигравийная защита <br><span class="hero__highlight">VEGA PPF</span></h1>
+                <p class="hero__desc">Полиуретановые плёнки премиум-класса для защиты ЛКП от сколов, царапин и реагентов.</p>
+                <div class="hero__actions">
+                    <a href="#products" class="btn btn-primary">Выбрать плёнку</a>
+                    <a href="#contacts" class="btn btn-svaz">Связаться</a>
+                </div>
+                <div class="hero__stats">
+                    <div><span>5+</span> лет гарантии</div>
+                    <div><span>24/7</span> поддержка</div>
+                    <div><span>По РФ и СНГ</span> доставка</div>
+                </div>
+            </div>
+            <!-- <div class="hero__image">
+                <div class="hero__image-placeholder">
+                    <img src="фото/logo/stenka.jpg">
+                    <p>VEGA PPF</p>
+                    <small>Защита, которой можно доверять</small>
+                </div>
+            </div> -->
+        </div>
+    </section>
+
+    <!-- 3D-КОНФИГУРАТОР — ПРИГЛАШЕНИЕ -->
+    <section class="configurator-cta" id="configurator">
+        <div class="container">
+            <div class="configurator-cta__inner">
+                <div class="configurator-cta__content">
+                    <span class="section-tag">3D-визуализация</span>
+                    <h2 class="section-title">Посмотрите, как плёнки VEGA <span class="highlight">выглядят на авто</span></h2>
+                    <p class="configurator-cta__desc">
+                        Вращайте Lamborghini Urus в реальном времени, меняйте цвета и находите идеальный оттенок для вашего автомобиля.
+                    </p>
+                    <ul class="configurator-cta__features">
+                        <li>- Вращение модели 360°</li>
+                        <li>- 10+ цветов плёнок VEGA</li>
+                        <li>- Глянцевые и матовые покрытия</li>
+                    </ul>
+                    <a href="configurator.html" class="btn btn-primary btn-large">
+                        Попробовать 3D-конфигуратор
+                        <span class="btn-arrow">→</span>
+                    </a>
+                </div>
+                <div class="configurator-cta__preview">
+                    <div class="configurator-cta__mockup">
+                        <img src="фото/about/config.png" alt="3D-конфигуратор VEGA PPF">
+                        <div class="mockup-overlay">
+                            <span class="mockup-play">▶</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- О БРЕНДЕ -->
+    <section class="about" id="about">
+    <div class="container">
+        <div class="about__grid">
+            <div class="about__text">
+                <span class="section-tag">О бренде</span>
+                <h2 class="section-title">VEGA Paint Protection Film</h2>
+                <p class="section-subtitle">Бренд, созданный экспертами в области защиты автомобилей.</p>
+                <p>VEGA PPF — это современные полиуретановые плёнки, разработанные с использованием инновационных технологий. Они обеспечивают надёжную защиту кузова от механических повреждений, ультрафиолета и агрессивной химии.</p>
+                <p>Материалы VEGA отличаются высокой прозрачностью, устойчивостью к пожелтению и самовосстанавливающимся свойствам при нагревании.</p>
+                <div class="about__features">
+                    <div>🔬 Инновационные технологии</div>
+                    <div>🛡️ Гарантия до 5 лет</div>
+                    <div>🌍 Доставка по России и СНГ</div>
+                </div>
+            </div>
+            <div class="about__image">
+                <div class="gallery">
+                    <div class="gallery__track" id="galleryTrack">
+                        <img src="фото/about/porshe.jpg" alt="VEGA PPF защита авто 1">
+                        <img src="фото/about/kleit.jpg" alt="VEGA PPF защита авто 2">
+                        <img src="фото/about/veer.jpg" alt="VEGA PPF защита авто 3">
+                        <img src="фото/about/kleit2.jpg" alt="VEGA PPF защита авто 4">
+                    </div>
+                    <button class="gallery__btn gallery__btn--prev" id="galleryPrev">‹</button>
+                    <button class="gallery__btn gallery__btn--next" id="galleryNext">›</button>
+                    <div class="gallery__dots" id="galleryDots"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- ИСТОРИЯ -->
+    <section class="history" id="history">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Наша история</span>
+            <h2 class="section-title">История бренда <span class="highlight">VEGA</span></h2>
+            <p class="section-subtitle">Как начинался путь одного из ведущих производителей защитных плёнок в России</p>
+        </div>
+        <div class="history__grid">
+            <div class="history__content">
+                <p><strong>VEGA Paint Protection Film</strong> — это российский амбициозный бренд, который с самого начала поставил перед собой цель — обеспечить рынок антигравийных плёнок продуктом, максимально точно подобранным под конкретный автомобиль и условия его эксплуатации.</p>
+                <p>Бренд был создан командой экспертов, глубоко понимающих потребности автовладельцев и специфику защиты лакокрасочного покрытия. Основная миссия VEGA PPF — предложить клиентам не просто плёнку, а индивидуальное решение, которое учитывает особенности каждого автомобиля.</p>
+                <p>Официальная регистрация торговой марки <strong>«ВЕГА — VEGA»</strong> состоялась в <strong>2020 году</strong>. С тех пор бренд непрерывно развивается, расширяет ассортимент и внедряет инновации, оставаясь верным своему главному принципу: предлагать защиту, которой можно доверять.</p>
+                <div class="history__milestones">
+                    <div class="history__milestone">
+                        <span class="year">2019</span>
+                        <p>Подана заявка на регистрацию торговой марки VEGA</p>
+                    </div>
+                    <div class="history__milestone">
+                        <span class="year">2020</span>
+                        <p>Официальная регистрация бренда «ВЕГА — VEGA»</p>
+                    </div>
+                    <div class="history__milestone">
+                        <span class="year">Сегодня</span>
+                        <p>Широкий ассортимент плёнок для любых задач и автомобилей</p>
+                    </div>
+                </div>
+            </div>
+            <div class="history__image">
+                <div class="gallery gallery--history">
+                    <div class="gallery__track" id="historyGalleryTrack">
+                        <img src="фото/about/moskvich.jpg" alt="История VEGA 1">
+                        <img src="фото/about/kleit3.webp" alt="История VEGA 2">
+                        <img src="фото/about/merit.webp" alt="История VEGA 3">
+                        <img src="фото/about/detaling.webp" alt="История VEGA 4">
+                    </div>
+                        <button class="gallery__btn gallery__btn--prev" id="historyGalleryPrev">‹</button>
+                        <button class="gallery__btn gallery__btn--next" id="historyGalleryNext">›</button>
+                        <div class="gallery__dots" id="historyGalleryDots"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- КАК МЫ РАБОТАЕМ -->
+    <section class="steps" id="steps">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Процесс</span>
+                <h2 class="section-title">Как мы <span class="highlight">работаем</span></h2>
+                <p class="section-subtitle">Четыре простых шага к защите вашего автомобиля</p>
+            </div>
+            <div class="steps__grid">
+                <div class="step">
+                    <div class="step__number">1</div>
+                    <h3>Консультация</h3>
+                    <p>Обсудим ваши пожелания, подберём оптимальную плёнку под цвет и тип автомобиля.</p>
+                </div>
+                <div class="step">
+                    <div class="step__number">2</div>
+                    <h3>Подбор плёнки</h3>
+                    <p>Предложим варианты с учётом бюджета и степени защиты — от базовой до премиум.</p>
+                </div>
+                <div class="step">
+                    <div class="step__number">3</div>
+                    <h3>Запись на оклейку</h3>
+                    <p>Согласуем удобное время, подготовим все материалы и инструменты.</p>
+                </div>
+                <div class="step">
+                    <div class="step__number">4</div>
+                    <h3>Работа мастера</h3>
+                    <p>Опытные специалисты выполнят оклейку с гарантией качества и финальным контролем.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ШКОЛА ОКЛЕЙКИ -->
+    <section class="school" id="school">
+        <div class="container">
+            <div class="school__inner">
+                <div class="school__content">
+                    <span class="section-tag">Обучение</span>
+                    <h2 class="section-title">Школа <span class="highlight">VEGA PPF</span></h2>
+                    <p class="school__subtitle">Научись профессионально клеить защитные плёнки</p>
+                    <div class="school__text">
+                        <p>Мы обучаем специалистов по оклейке автомобилей защитными плёнками VEGA PPF. Наши курсы подходят как для новичков, так и для мастеров с опытом.</p>
+                        <p>Вы освоите все этапы работы: от подготовки поверхности до финальной обработки плёнки. Научитесь работать с глянцевыми, матовыми и цветными покрытиями.</p>
+                    </div>
+                    <div class="school__features">
+                        <div class="school__feature">
+                            <span class="school__feature-icon">🛠️</span>
+                            <div>
+                                <h4>Практика на авто</h4>
+                                <p>Работаете с реальными автомобилями под контролем мастера</p>
+                            </div>
+                        </div>
+                        <div class="school__feature">
+                            <span class="school__feature-icon">📜</span>
+                            <div>
+                                <h4>Сертификат VEGA</h4>
+                                <p>После обучения выдаётся сертификат официального мастера</p>
+                            </div>
+                        </div>
+                        <div class="school__feature">
+                            <span class="school__feature-icon">👨‍🏫</span>
+                            <div>
+                                <h4>Наставники</h4>
+                                <p>Обучение проводят мастера с 10+ летним стажем</p>
+                            </div>
+                        </div>
+                        <div class="school__feature">
+                            <span class="school__feature-icon">🎓</span>
+                            <div>
+                                <h4>Группы до 5 человек</h4>
+                                <p>Индивидуальный подход к каждому ученику</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#contacts" class="btn btn-primary btn-large">Записаться на обучение</a>
+                </div>
+                <div class="school__image">
+                    <div class="school__image-placeholder">
+                        <!-- СЮДА ВСТАВИШЬ ФОТО -->
+                        <img src="фото/school/placeholder.jpg" alt="Школа оклейки VEGA PPF">
+                        <div class="school__image-badge">Обучили 200+ мастеров</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОГ (без картинок) -->
+    <!-- БЛОГ -->
+<section class="blog" id="blog">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Полезное</span>
+            <h2 class="section-title">Наш <span class="highlight">блог</span></h2>
+            <p class="section-subtitle">Статьи о защите автомобилей и уходе за плёнкой</p>
+        </div>
+        <div class="blog__grid">
+            <div class="blog__post" data-modal="modal1">
+                <div class="blog__post-content">
+                    <div class="date">12 мая 2026</div>
+                    <h3>Как выбрать антигравийную плёнку?</h3>
+                    <p>Разбираем основные параметры: толщина, тип покрытия, самовосстановление, цветопередача и гарантия. Что важно для разных типов автомобилей.</p>
+                    <button class="btn btn-primary btn-sm open-modal" data-modal="modal1">Читать</button>
+                </div>
+            </div>
+            <div class="blog__post" data-modal="modal2">
+                <div class="blog__post-content">
+                    <div class="date">28 апреля 2026</div>
+                    <h3>Правильный уход за защитной плёнкой</h3>
+                    <p>Как мыть, чем полировать, как избежать повреждений? Советы экспертов по продлению срока службы PPF.</p>
+                    <button class="btn btn-primary btn-sm open-modal" data-modal="modal2">Читать</button>
+                </div>
+            </div>
+            <div class="blog__post" data-modal="modal3">
+                <div class="blog__post-content">
+                    <div class="date">15 апреля 2026</div>
+                    <h3>Сравнение VEGA PREMIUM и ULTIMA</h3>
+                    <p>В чём разница между сериями? Какая плёнка подойдёт для вашего авто. Подробный анализ характеристик и цены.</p>
+                    <button class="btn btn-primary btn-sm open-modal" data-modal="modal3">Читать</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- МОДАЛЬНЫЕ ОКНА -->
+    <div class="modal-overlay" id="modal1">
+        <div class="modal-window">
+            <button class="modal-close">&times;</button>
+            <h2>Как выбрать <span class="highlight">идеальную</span> антигравийную плёнку?</h2>
+            <div class="modal-date">12 мая 2026</div>
+            <p><strong>Выбор плёнки — это инвестиция в сохранность вашего автомобиля.</strong> Неправильное решение может стоить вам не только денег, но и времени на переделку. Мы подготовили чек-лист, который поможет вам принять верное решение с первого раза.</p>
+            <p><strong>1. Толщина имеет значение.</strong> Для городского автомобиля достаточно 190–230 мкм – это надёжная защита от сколов и царапин. Если вы часто ездите по трассе или участвуете в трек-днях, выбирайте 290–350 мкм – они выдерживают удары камней на высокой скорости.</p>
+            <p><strong>2. Глянец или мат?</strong> Глянцевые плёнки (ST, ULTIMA) подчёркивают цвет кузова и дают эффект «мокрого» блеска. Матовые и сатиновые (MATTE HT, SATIN HT) создают благородный, сдержанный образ и скрывают мелкие дефекты ЛКП. Цветные плёнки (COLOR PPF) позволяют полностью изменить цвет авто без перекраски.</p>
+            <p><strong>3. Самовосстановление – не миф.</strong> Все плёнки VEGA обладают эффектом самовосстановления при нагреве. Мелкие царапины исчезают под воздействием солнечных лучей или горячей воды – ваш автомобиль всегда выглядит как новый.</p>
+            <p><strong>4. Устойчивость к УФ и химии.</strong> Качественная плёнка не желтеет со временем. Мы даём гарантию до 5 лет – это подтверждает долговечность наших материалов.</p>
+            <p><strong>Не знаете, что выбрать?</strong> Мы поможем! Оставьте заявку, и наш эксперт подберёт идеальный вариант под ваш автомобиль, стиль вождения и бюджет. <strong>Консультация – бесплатна.</strong></p>
+            <div class="modal-cta">
+                <a href="#contacts" class="btn btn-primary">Получить консультацию</a>
+                <a href="#products" class="btn btn-outline">Смотреть каталог</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal2">
+        <div class="modal-window">
+            <button class="modal-close">&times;</button>
+            <h2>Как продлить жизнь <span class="highlight">защитной плёнке</span> на годы?</h2>
+            <div class="modal-date">28 апреля 2026</div>
+            <p><strong>Правильный уход – залог того, что плёнка прослужит весь гарантийный срок и останется прозрачной и блестящей.</strong> Мы собрали простые, но эффективные рекомендации.</p>
+            <p><strong>1. Мойка без фанатизма.</strong> Используйте бесконтактную мойку или мойку с мягкой щёткой. Агрессивные щётки и грязь с песком могут поцарапать плёнку. После мойки обязательно ополаскивайте авто – химия не должна засыхать на поверхности.</p>
+            <p><strong>2. Забудьте о воске и полиролях с абразивами.</strong> Плёнка VEGA уже обладает гидрофобным эффектом. Для блеска достаточно обычного шампуня для бесконтактной мойки. Если хотите дополнительный слой защиты – используйте специальные составы для PPF, без абразивов.</p>
+            <p><strong>3. Берегите от битума и птичьего помёта.</strong> Эти вещества агрессивны для любого покрытия. Удаляйте их сразу же влажной салфеткой или мягкой губкой. Чем дольше они остаются, тем выше риск повреждения.</p>
+            <p><strong>4. Не паркуйтесь под деревьями.</strong> Смола и сок деревьев могут оставить следы, которые сложно вывести.</p>
+            <p><strong>5. Периодически проверяйте состояние.</strong> Заметив вздутие или отслоение – сразу обращайтесь к мастеру. Гарантия VEGA покрывает такие случаи.</p>
+            <p><strong>Хотите, чтобы мы сами ухаживали за вашей машиной?</strong> У нас есть услуга по профессиональному уходу за оклеенными автомобилями. Запишитесь уже сегодня!</p>
+            <div class="modal-cta">
+                <a href="#contacts" class="btn btn-primary">Записаться на уход</a>
+                <a href="#products" class="btn btn-outline">Выбрать плёнку</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal3">
+        <div class="modal-window">
+            <button class="modal-close">&times;</button>
+            <h2>VEGA PREMIUM vs ULTIMA: <span class="highlight">что лучше</span> для вашего авто?</h2>
+            <div class="modal-date">15 апреля 2026</div>
+            <p><strong>Выбор между сериями PREMIUM и ULTIMA – это выбор между классическим качеством и максимальной роскошью.</strong> Давайте разберёмся, какой вариант подходит именно вам.</p>
+            <p><strong>VEGA PREMIUM (ST, HT, MATTE, SATIN)</strong> – это проверенный, надёжный вариант для большинства автомобилей. Толщина от 190 до 350 мкм, отличная защита от сколов и УФ, самовосстановление. Идеальный выбор для тех, кто ценит баланс цены и качества.</p>
+            <p><strong>VEGA ULTIMA (GLOSS 200, 215, COLOR)</strong> – это премиум-серия с усиленными характеристиками. Плёнки ULTIMA имеют повышенную прозрачность, более глубокий блеск и улучшенную устойчивость к химическим реагентам. Они тоньше (200–215 мкм), но при этом прочнее благодаря особой структуре полимера. Подходят для автомобилей с идеальным ЛКП, где важен максимальный визуальный эффект.</p>
+            <p><strong>Как выбрать?</strong> Если ваш автомобиль – это повседневный спутник, которому нужна надёжная защита, берите PREMIUM. Если вы цените безупречный внешний вид и готовы вложиться в безупречный блеск – выбирайте ULTIMA.</p>
+            <p><strong>В любом случае</strong> – обе серии обеспечивают гарантию 5 лет и превосходно защищают кузов. Мы поможем вам определиться: просто расскажите нам о своих приоритетах, и мы подберём идеальный вариант.</p>
+            <div class="modal-cta">
+                <a href="#contacts" class="btn btn-primary">Помогите выбрать</a>
+                <a href="#products" class="btn btn-outline">Смотреть все плёнки</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- КАТАЛОГ (все товары) -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Каталог</span>
+                <h2 class="section-title">Вся продукция <span class="highlight">VEGA PPF</span></h2>
+                <p class="section-subtitle">Плёнки, аксессуары и мерч для вашего автомобиля</p>
+            </div>
+            <!-- Плёнки -->
+            <h3 class="category-title">Плёнки VEGA PPF</h3>
+            <div class="products__grid">
+                <!-- Карточки товаров (все 17 штук) -->
+                <div class="product-card">
+                    <div class="product-card__badge">Хит</div>
+                    <div class="product-card__image">
+                        <img src="фото/plenki/190prem.jpg" alt="VEGA PREMIUM 190 ST">
+                    </div>
+                    <h3 class="product-card__title">VEGA® PREMIUM 190 ST</h3>
+                    <p class="product-card__desc">Глянцевая плёнка для тёмных авто. Толщина 190 мкм.</p>
+                    <div class="product-card__price">66 000 ₽</div>
+                    <a href="https://vegappf.com/vega-190-st-series" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+                <!-- Добавьте остальные товары по аналогии, чтобы не загромождать ответ, но в реальном файле они должны быть все.
+                     Для краткости я покажу все позиции сжато: -->
+                <!-- VEGA PREMIUM 230 ST -->
+                <div class="product-card">
+                    <div class="product-card__badge">Хит</div>
+                    <div class="product-card__image">
+                        <img src="фото/plenki/230prem.jpg" alt="VEGA PREMIUM 230 ST">
+                    </div>
+                    <h3 class="product-card__title">VEGA® PREMIUM 230 ST</h3>
+                    <p class="product-card__desc">Глянцевая плёнка для тёмных авто. Толщина 230 мкм.</p>
+                    <div class="product-card__price">83 000 ₽</div>
+                    <a href="https://vegappf.com/vega-230-st-series" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+                <!-- VEGA PREMIUM 290 ST -->
+                <div class="product-card">
+                    <div class="product-card__badge">Премиум</div>
+                    <div class="product-card__image">
+                        <img src="фото/plenki/290prem.jpg" alt="VEGA PREMIUM 290 ST">
+                    </div>
+                    <h3 class="product-card__title">VEGA® PREMIUM 290 ST</h3>
+                    <p class="product-card__desc">Глянцевая плёнка для тёмных авто. Толщина 290 мкм.</p>
+                    <div class="product-card__price">129 000 ₽</div>
+                    <a href="https://vegappf.com/vega-290-st-series" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+                <!-- VEGA PREMIUM 350 HT -->
+                <div class="product-card">
+                    <div class="product-card__badge">Премиум</div>
+                    <div class="product-card__image">
+                        <img src="фото/plenki/350prem.jpg" alt="VEGA PREMIUM 350 HT">
+                    </div>
+                    <h3 class="product-card__title">VEGA® PREMIUM 350 HT</h3>
+                    <p class="product-card__desc">Сверхпрочная глянцевая плёнка. Толщина 350 мкм.</p>
+                    <div class="product-card__price">190 000 ₽</div>
+                    <a href="https://vegappf.com/vega-350" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+                <!-- VEGA PREMIUM 190 HT 1.82 -->
+                <div class="product-card">
+                    <div class="product-card__badge">Широкий рулон</div>
+                    <div class="product-card__image">
+                        <img src="фото/plenki/190_182gloss.jpg" alt="VEGA PREMIUM 190 HT 1.82">
+                    </div>
+                    <h3 class="product-card__title">VEGA® PREMIUM 190 HT 1.82</h3>
+                    <p class="product-card__desc">Глянцевая плёнка шириной 1.82 м для негабаритных деталей.</p>
+                    <div class="product-card__price">110 000 ₽</div>
+                    <a href="https://vegappf.com/vega-1-82-gloss-polyurethane-film" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+                <!-- VEGA ULTIMA GLOSS 200 -->
+                <div class="product-card">
+                    <div class="product-card__badge">Премиум</div>
+                    <div class="product-card__image">
+                        <img src="фото/plenki/ultima200.png" alt="VEGA ULTIMA GLOSS 200">
+                    </div>
+                    <h3 class="product-card__title">VEGA® ULTIMA GLOSS 200</h3>
+                    <p class="product-card__desc">Глянцевая плёнка для светлых авто. Толщина 200 мкм.</p>
+                    <div class="product-card__price">65 000 ₽</div>
+                    <a href="https://vegappf.com/vega%C2%AE-ultima-200-gloss" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+                <!-- VEGA ULTIMA GLOSS 215 -->
+                <div class="product-card">
+                    <div class="product-card__badge">Премиум</div>
+                    <div class="product-card__image">
+                        <img src="фото/plenki/ultima215.png" alt="VEGA ULTIMA GLOSS 215">
+                    </div>
+                    <h3 class="product-card__title">VEGA® ULTIMA GLOSS 215</h3>
+                    <p class="product-card__desc">Глянцевая плёнка для светлых авто. Толщина 215 мкм.</p>
+                    <div class="product-card__price">70 000 ₽</div>
+                    <a href="https://vegappf.com/vega%C2%AE-ultima-215-gloss" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+                <!-- VEGA PREMIUM 190 MATTE HT -->
+                <div class="product-card">
+                    <div class="product-card__badge">Матовый</div>
+                    <div class="product-card__image">
+                        <img src="фото/plenki/matt190.jpg" alt="VEGA MATTE HT">
+                    </div>
+                    <h3 class="product-card__title">VEGA® PREMIUM 190 MATTE HT</h3>
+                    <p class="product-card__desc">Матовая плёнка, высокая термостойкость. Толщина 190 мкм.</p>
+                    <div class="product-card__price">74 000 ₽</div>
+                    <a href="https://vegappf.com/vega-190-matte-ht" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+                <!-- VEGA PREMIUM 190 SATIN HT -->
+                <div class="product-card">
+                    <div class="product-card__badge">Сатиновый</div>
+                    <div class="product-card__image">
+                        <img src="фото/plenki/satin190.jpg" alt="VEGA SATIN HT">
+                    </div>
+                    <h3 class="product-card__title">VEGA® PREMIUM 190 SATIN HT</h3>
+                    <p class="product-card__desc">Сатиновая плёнка, уникальный блеск. Толщина 190 мкм.</p>
+                    <div class="product-card__price">74 000 ₽</div>
+                    <a href="https://vegappf.com/vega-190-satin" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+                <!-- VEGA 190 SATIN PRO -->
+                <div class="product-card">
+                    <div class="product-card__badge">Pro</div>
+                    <div class="product-card__image">
+                        <img src="фото/plenki/satin_pro190.jpeg" alt="VEGA 190 SATIN PRO">
+                    </div>
+                    <h3 class="product-card__title">VEGA® 190 SATIN PRO</h3>
+                    <p class="product-card__desc">Сатиновая плёнка Pro-серии. Толщина 190 мкм.</p>
+                    <div class="product-card__price">54 000 ₽</div>
+                    <a href="https://vegappf.com/vega-190-pro-satin" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+                <!-- VEGA 190 ST PRO -->
+                <div class="product-card">
+                    <div class="product-card__badge">Pro</div>
+                    <div class="product-card__image">
+                        <img src="фото/plenki/pro190.jpg" alt="VEGA 190 ST PRO">
+                    </div>
+                    <h3 class="product-card__title">VEGA® 190 ST PRO</h3>
+                    <p class="product-card__desc">Глянцевая плёнка Pro-серии для тёмных авто.</p>
+                    <div class="product-card__price">46 000 ₽</div>
+                    <a href="https://vegappf.com/vega-190-pro" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+                <!-- VEGA 190 HT PRO -->
+                <div class="product-card">
+                    <div class="product-card__badge">Pro</div>
+                    <div class="product-card__image">
+                        <img src="фото/plenki/ht_pro190.jpg" alt="VEGA 190 HT PRO">
+                    </div>
+                    <h3 class="product-card__title">VEGA® 190 HT PRO</h3>
+                    <p class="product-card__desc">Глянцевая плёнка Pro-серии для светлых авто.</p>
+                    <div class="product-card__price">46 000 ₽</div>
+                    <a href="https://vegappf.com/vega-190-pro-ht" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+                <!-- VEGA COLOR PPF PREMIUM -->
+                <div class="product-card">
+                    <div class="product-card__badge">Новинка</div>
+                    <div class="product-card__image">
+                        <img src="фото/plenki/color_ppf.jpg" alt="VEGA COLOR PPF PREMIUM">
+                    </div>
+                    <h3 class="product-card__title">VEGA® COLOR PPF PREMIUM</h3>
+                    <p class="product-card__desc">Цветная плёнка. Более 60 оттенков. Толщина 200 мкм.</p>
+                    <div class="product-card__price">Цена по запросу</div>
+                    <a href="https://vegappf.com/color-film-vega-color-premium" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+                <!-- VEGA COLOR PPF -->
+                <div class="product-card">
+                    <div class="product-card__badge">Цветная</div>
+                    <div class="product-card__image">
+                        <img src="фото/plenki/red_color_ppf.jpg" alt="VEGA COLOR PPF">
+                    </div>
+                    <h3 class="product-card__title">VEGA® COLOR PPF</h3>
+                    <p class="product-card__desc">Цветная полиуретановая плёнка. Более 70 оттенков.</p>
+                    <div class="product-card__price">Цена по запросу</div>
+                    <a href="https://vegappf.com/vega-color-ppf-color-film" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+                <!-- VEGA ULTIMA COLOR PPF -->
+                <div class="product-card">
+                    <div class="product-card__badge">Цветная</div>
+                    <div class="product-card__image">
+                        <img src="фото/plenki/ultima_color_ppf.png" alt="VEGA ULTIMA COLOR PPF">
+                    </div>
+                    <h3 class="product-card__title">VEGA® ULTIMA COLOR PPF</h3>
+                    <p class="product-card__desc">Цветная плёнка премиум-класса. Более 80 цветов. 210 мкм.</p>
+                    <div class="product-card__price">Цена по запросу</div>
+                    <a href="https://vegappf.com/color-film-vega-ultima-color-ppf" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+                <!-- Образцы VEGA COLOR PREMIUM -->
+                <div class="product-card">
+                    <div class="product-card__badge">Образцы</div>
+                    <div class="product-card__image">
+                        <img src="фото/plenki/veer_color_prem.jpg" alt="Образцы VEGA COLOR PREMIUM">
+                    </div>
+                    <h3 class="product-card__title">Образцы VEGA® COLOR PREMIUM</h3>
+                    <p class="product-card__desc">Веер с образцами цветов премиальной линейки. Более 60 цветов.</p>
+                    <div class="product-card__price">Цена по запросу</div>
+                    <a href="https://vegappf.com/vega-color-premium" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+                <!-- Образцы VEGA COLOR -->
+                <div class="product-card">
+                    <div class="product-card__badge">Образцы</div>
+                    <div class="product-card__image">
+                        <img src="фото/plenki/color.png" alt="Образцы VEGA COLOR">
+                    </div>
+                    <h3 class="product-card__title">Образцы VEGA® COLOR</h3>
+                    <p class="product-card__desc">Веер с образцами цветов. Более 60 вариантов расцветок.</p>
+                    <div class="product-card__price">Цена по запросу</div>
+                    <a href="https://vegappf.com/vega-color-ppf-filter-samples-(fan)" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+            </div>
+            <!-- Аксессуары -->
+            <h3 class="category-title">Аксессуары и химия</h3>
+            <div class="products__grid">
+                <div class="product-card">
+                    <div class="product-card__badge">Химия</div>
+                    <div class="product-card__image">
+                        <img src="фото/accsesuar/ust_konc.jpg" alt="Установочный концентрат">
+                    </div>
+                    <h3 class="product-card__title">Установочный концентрат</h3>
+                    <p class="product-card__desc">Для приготовления рабочего раствора при установке плёнок.</p>
+                    <div class="product-card__price">800 ₽</div>
+                    <a href="https://vegappf.com/installation-concentrate" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+                <div class="product-card">
+                    <div class="product-card__badge">Химия</div>
+                    <div class="product-card__image">
+                        <img src="фото/accsesuar/gel.jpg" alt="Установочный гель">
+                    </div>
+                    <h3 class="product-card__title">Установочный гель</h3>
+                    <p class="product-card__desc">Для быстрой локальной адгезии при оклейке сложных деталей.</p>
+                    <div class="product-card__price">800 ₽</div>
+                    <a href="https://vegappf.com/installation-gel" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+                <div class="product-card">
+                    <div class="product-card__badge">Инструмент</div>
+                    <div class="product-card__image">
+                        <img src="фото/accsesuar/rakel.jpg" alt="Ракель VEGA">
+                    </div>
+                    <h3 class="product-card__title">Ракель VEGA</h3>
+                    <p class="product-card__desc">Для удаления влаги из-под плёнки при установке.</p>
+                    <div class="product-card__price">500 ₽</div>
+                    <a href="https://vegappf.com/squeegee-vega" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+                <div class="product-card">
+                    <div class="product-card__badge">Инструмент</div>
+                    <div class="product-card__image">
+                        <img src="фото/accsesuar/lopata.jpg" alt="Лопатка VEGA">
+                    </div>
+                    <h3 class="product-card__title">Лопатка VEGA</h3>
+                    <p class="product-card__desc">Для точечной работы с плёнкой на углах и у уплотнителей.</p>
+                    <div class="product-card__price">Цена по запросу</div>
+                    <a href="https://vegappf.com/vega-spatula-for-working-with-film" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+            </div>
+            <!-- Мерч -->
+            <h3 class="category-title">Мерч VEGA</h3>
+            <div class="products__grid">
+                <div class="product-card">
+                    <div class="product-card__badge">Мерч</div>
+                    <div class="product-card__image">
+                        <img src="фото/merch/bej.jpg" alt="Футболка бежевая">
+                    </div>
+                    <h3 class="product-card__title">Футболка бежевая</h3>
+                    <p class="product-card__desc">Фирменная футболка VEGA. Цвет: бежевый.</p>
+                    <div class="product-card__price">5 000 ₽</div>
+                    <a href="https://vegappf.com/futbolka-bezhevaya" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+                <div class="product-card">
+                    <div class="product-card__badge">Мерч</div>
+                    <div class="product-card__image">
+                        <img src="фото/merch/green.jpg" alt="Футболка зелёная">
+                    </div>
+                    <h3 class="product-card__title">Футболка зелёная</h3>
+                    <p class="product-card__desc">Фирменная футболка VEGA. Цвет: зелёный.</p>
+                    <div class="product-card__price">5 000 ₽</div>
+                    <a href="https://vegappf.com/t-shirt-green" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+                <div class="product-card">
+                    <div class="product-card__badge">Мерч</div>
+                    <div class="product-card__image">
+                        <img src="фото/merch/red.jpg" alt="Футболка красная">
+                    </div>
+                    <h3 class="product-card__title">Футболка красная</h3>
+                    <p class="product-card__desc">Фирменная футболка VEGA. Цвет: красный.</p>
+                    <div class="product-card__price">5 000 ₽</div>
+                    <a href="https://vegappf.com/t-shirt-red" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+                <div class="product-card">
+                    <div class="product-card__badge">Мерч</div>
+                    <div class="product-card__image">
+                        <img src="фото/merch/grey.jpg" alt="Футболка серая">
+                    </div>
+                    <h3 class="product-card__title">Футболка серая</h3>
+                    <p class="product-card__desc">Фирменная футболка VEGA. Цвет: серый.</p>
+                    <div class="product-card__price">5 000 ₽</div>
+                    <a href="https://vegappf.com/t-shirt-gray" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                </div>
+            </div>
+            <div class="products__footnote">
+                <p>Полный каталог на сайте <a href="https://vegappf.com" target="_blank">vegappf.com</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПРЕИМУЩЕСТВА -->
+    <section class="advantages" id="advantages">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Почему VEGA</span>
+                <h2 class="section-title">Преимущества плёнок <span class="highlight">VEGA PPF</span></h2>
+                <p class="section-subtitle">Качество, которому доверяют автовладельцы по всей России</p>
+            </div>
+            <div class="advantages__grid">
+                <div class="advantage">
+                    <div class="advantage__icon1"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Защита от сколов и царапин</h3>
+                    <p>Полиуретановое покрытие надёжно защищает ЛКП от механических повреждений.</p>
+                </div>
+                <div class="advantage">
+                    <div class="advantage__icon2"><i class="fas fa-star"></i></div>
+                    <h3>Самовосстановление</h3>
+                    <p>Мелкие царапины исчезают при нагревании — плёнка "залечивает" себя.</p>
+                </div>
+                <div class="advantage">
+                    <div class="advantage__icon1"><i class="fas fa-tint"></i></div>
+                    <h3>Гидрофобный эффект</h3>
+                    <p>Вода и грязь не задерживаются на поверхности, облегчая уход за авто.</p>
+                </div>
+                <div class="advantage">
+                    <div class="advantage__icon2"><i class="fas fa-sun"></i></div>
+                    <h3>Устойчивость к УФ и химии</h3>
+                    <p>Не желтеет со временем, выдерживает воздействие реагентов и солнца.</p>
+                </div>
+                <div class="advantage">
+                    <div class="advantage__icon1"><i class="fas fa-wrench"></i></div>
+                    <h3>Простота монтажа</h3>
+                    <p>Плёнки легко наносятся на любые поверхности кузова любой сложности.</p>
+                </div>
+                <div class="advantage">
+                    <div class="advantage__icon2"><i class="fas fa-box"></i></div>
+                    <h3>Доставка по всей России</h3>
+                    <p>Быстрая доставка в любой регион РФ и стран СНГ.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- КОНТАКТЫ -->
+    <section class="contacts" id="contacts">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Свяжитесь с нами</span>
+                <h2 class="section-title">Контакты <span class="highlight">VEGA PPF</span></h2>
+                <p class="section-subtitle">Мы на связи 24/7 — напишите или позвоните, и мы ответим на все вопросы</p>
+            </div>
+            <div class="contacts__grid">
+                <!-- ЛЕВАЯ КОЛОНКА — КОНТАКТЫ -->
+                <div class="contacts__info">
+                    <div class="contact-card contact-card--phone">
+                        <div class="contact-card__icon">📞</div>
+                        <div class="contact-card__body">
+                            <h4>Телефон</h4>
+                            <a href="tel:+78005550027">8 (800) 555-00-27</a>
+                            <span class="contact-card__sub">Бесплатный звонок по РФ</span>
+                            <a href="tel:+79152652220" class="contact-card__second">8 (915) 265-22-20</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-card contact-card--email">
+                        <div class="contact-card__icon">✉️</div>
+                        <div class="contact-card__body">
+                            <h4>Email</h4>
+                            <a href="mailto:sales@vegappf.com">sales@vegappf.com</a>
+                            <span class="contact-card__sub">Ответим в течение часа</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-card contact-card--location">
+                        <div class="contact-card__icon">📍</div>
+                        <div class="contact-card__body">
+                            <h4>Адрес</h4>
+                            <p>г. Москва, Ленинградское шоссе, д. 71</p>
+                            <span class="contact-card__sub">Офис и склад — самовывоз</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-card contact-card--hours">
+                        <div class="contact-card__icon">🕒</div>
+                        <div class="contact-card__body">
+                            <h4>Режим работы</h4>
+                            <p>Пн–Вс: <strong>10:00 – 19:00</strong></p>
+                            <span class="contact-card__sub">Без выходных</span>
+                        </div>
+                    </div>
+
+                    <!-- Соцсети -->
+                    <div class="contact-socials">
+                        <span class="contact-socials__label">Мы в соцсетях:</span>
+                        <div class="contact-socials__icons">
+                            <a href="https://t.me/vegappf" class="social-icon social-icon--tg" title="Telegram" target="_blank">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                                </svg>
+                            </a>
+                            <a href="https://wa.me/89152652220" class="social-icon social-icon--wa" title="WhatsApp" target="_blank">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.youtube.com/@vegapaintprotectionfilms5146" class="social-icon social-icon--yt" title="YouTube" target="_blank">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                </svg>
+                            </a>
+                            <a href="https://www.instagram.com/vega_ppf/" class="social-icon social-icon--ig" title="Instagram" target="_blank">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div> <!-- ← ЭТОТ ЗАКРЫВАЮЩИЙ ТЕГ БЫЛ ПРОПУЩЕН -->
+
+                <!-- ПРАВАЯ КОЛОНКА — ФОРМА -->
+                <div class="contacts__form">
+                    <div class="form-header">
+                        <h3>Оставьте заявку</h3>
+                        <p>Заполните форму — мы перезвоним вам в ближайшее время</p>
+                    </div>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" placeholder="+7 (___) ___-__-__" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" placeholder="Комментарий (необязательно)" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Отправить заявку</button>
+                        <p class="form__note">Нажимая кнопку, вы соглашаетесь с <a href="#">политикой обработки данных</a></p>
+                    </form>
+                </div>
+            </div> <!-- ← ЗАКРЫТИЕ contacts__grid -->
+        </div> <!-- ← ЗАКРЫТИЕ container -->
+    </section> <!-- ← ЗАКРЫТИЕ contacts -->
+
+    <!-- КАРТА -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Как нас найти</span>
+                <h2 class="section-title">Мы на <span class="highlight">карте</span></h2>
+                <p class="section-subtitle">г. Москва, Ленинградское шоссе, д. 71</p>
+            </div>
+            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Aff92e73dd107dfe637e3c34a7d276332a9c95894add1f032347e8990013f6d4a&amp;source=constructor" width="887" height="360" frameborder="0"></iframe>
+    </section>
+
+    <!-- ПОДВАЛ -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">
+                <span class="logo__icon">✦</span>
+                <span class="logo__text">VEGA <span class="logo__accent">PPF</span></span>
+                <p>© 2026 VEGA Paint Protection Film</p>
+            </div>
+            <nav class="footer__nav">
+                <a href="#about">О бренде</a>
+                <a href="#history">История</a>
+                <a href="#steps">Как работаем</a>
+                <a href="#blog">Блог</a>
+                <a href="#products">Продукция</a>
+                <a href="#advantages">Преимущества</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+            <div class="footer__contacts">
+                <a href="tel:+78005550027">8 (800) 555-00-27</a>
+                <a href="mailto:sales@vegappf.com">sales@vegappf.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
