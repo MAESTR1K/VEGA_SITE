@@ -1472,3 +1472,83 @@ img { max-width:100%; display:block; }
         border-bottom: none;
     }
 }
+
+/* ===== АДАПТИВ ПОДВАЛА ===== */
+@media (max-width: 768px) {
+    .footer {
+        padding: 32px 0;
+    }
+
+    .footer__inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 24px;
+    }
+
+    .footer__brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .footer__brand .logo__icon {
+        font-size: 2rem;
+    }
+
+    .footer__brand .logo__text {
+        font-size: 1.3rem;
+    }
+
+    .footer__brand p {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.5);
+        margin-top: 4px;
+    }
+
+    .footer__nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px 20px;
+        max-width: 100%;
+    }
+
+    .footer__nav a {
+        font-size: 0.85rem;
+        padding: 4px 0;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .footer__contacts {
+        align-items: center;
+        gap: 6px;
+    }
+
+    .footer__contacts a {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 24px 0;
+    }
+
+    .footer__nav {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .footer__nav a {
+        font-size: 0.8rem;
+    }
+
+    .footer__brand .logo__text {
+        font-size: 1.1rem;
+    }
+
+    .footer__contacts a {
+        font-size: 0.85rem;
+    }
+}
