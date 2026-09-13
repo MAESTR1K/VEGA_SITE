@@ -281,6 +281,7 @@
         const COLORS = [
             { name: 'Белый', hex: '#ffffff' },
             { name: 'Ferrari Red', hex: '#dc143c' },
+            { name: 'McLaren Orange', hex: '#ff6b00' },
             { name: 'Royal Blue', hex: '#1a4b8c' },
             { name: 'Nardo Grey', hex: '#9b9b9b' },
             { name: 'Liquid Silver', hex: '#b0b5b9' },
@@ -302,7 +303,7 @@
         // 3. СЦЕНА
         // ============================================================
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0xffffff);
+        scene.background = new THREE.Color(0xdedede);
 
         const camera = new THREE.PerspectiveCamera(35, width / height, 0.1, 100);
         camera.position.set(2.8, 1.2, 4.0);
@@ -310,7 +311,8 @@
         const renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setSize(width, height);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        renderer.shadowMap.enabled = true;
+        const isMobile = window.innerWidth < 768;
+        renderer.shadowMap.enabled = !isMobile;
         renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
         renderer.toneMappingExposure = 1.1;
@@ -326,7 +328,7 @@
         controls.minDistance = 0.8;
         controls.maxDistance = 8.0;
         controls.maxPolarAngle = Math.PI / 2.1;
-        controls.autoRotate = true;
+        controls.autoRotate = !isMobile;
         controls.autoRotateSpeed = 0.8;
         controls.update();
 
@@ -521,16 +523,16 @@
 
         scene.add(carGroup);
 
+       // ============================================================
+        // ПОЛ С ОТРАЖЕНИЕМ
         // ============================================================
-        // 8. ПОЛ
-        // ============================================================
-        const floorGeo = new THREE.PlaneGeometry(20, 20);
+        const floorGeo = new THREE.PlaneGeometry(30, 30);
         const floorMat = new THREE.MeshStandardMaterial({
-            color: 0x181818,
-            metalness: 0.4,
-            roughness: 0.5,
+            color: 0x1a1a1a,
+            metalness: 0.8,
+            roughness: 0.2,
             transparent: true,
-            opacity: 0.6,
+            opacity: 0.9,
         });
         const floor = new THREE.Mesh(floorGeo, floorMat);
         floor.rotation.x = -Math.PI / 2;
@@ -538,6 +540,12 @@
         floor.receiveShadow = true;
         scene.add(floor);
 
+        // Лёгкая сетка на полу (для стиля)
+        const gridHelper = new THREE.GridHelper(30, 30, 0x333333, 0x222222);
+        gridHelper.position.y = -0.04;
+        gridHelper.material.opacity = 0.3;
+        gridHelper.material.transparent = true;
+        scene.add(gridHelper);
         // ============================================================
         // 9. КНОПКИ ЦВЕТОВ
         // ============================================================
@@ -586,7 +594,7 @@
         }
         animate();
 
-        console.log('🚗 VEGA PPF — 3D Конфигуратор');
+        console.log('VEGA PPF — 3D Конфигуратор');
     </script>
 
 </body>

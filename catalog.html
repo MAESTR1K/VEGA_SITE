@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог — VEGA PPF</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="фото/logo/logo.png.webp" type="image/jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- ШАПКА -->
+    <header class="header">
+        <div class="container header__inner">
+            <a href="index.html" class="logo">
+                <img src="фото/logo/logo.png.webp" alt="logo">
+                <span class="logo__text">VEGA <span class="logo__accent">PPF</span></span>
+            </a>
+
+            <nav class="nav" id="mobileNav">
+                <a href="index.html">Главная</a>
+                <a href="catalog.html">Каталог</a>
+                <a href="index.html#configurator">3D-конфигуратор</a>
+                <a href="index.html#about">О бренде</a>
+                <a href="index.html#contacts">Контакты</a>
+            </nav>
+
+            <a href="cart.html" class="header__cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </a>
+
+            <a href="register.html" class="header__login">Войти</a>
+
+            <button class="burger" id="burgerBtn" aria-label="Меню">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- КАТАЛОГ -->
+    <section class="products" id="products" style="padding-top: 120px;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Каталог</span>
+                <h2 class="section-title">Вся продукция <span class="highlight">VEGA PPF</span></h2>
+                <p class="section-subtitle">Плёнки, аксессуары и мерч для вашего автомобиля</p>
+            </div>
+
+            <!-- ФИЛЬТР ПО КАТЕГОРИЯМ -->
+            <div class="catalog-filters">
+                <button class="filter-btn active" data-category="all">Все</button>
+                <button class="filter-btn" data-category="films">Плёнки</button>
+                <button class="filter-btn" data-category="accessories">Аксессуары</button>
+                <button class="filter-btn" data-category="merch">Мерч</button>
+            </div>
+
+            <!-- ПЛЁНКИ -->
+            <h3 class="category-title" data-category="films">Плёнки VEGA PPF</h3>
+            <div class="products__grid" data-category="films">
+                <div class="product-card" data-id="1">
+                    <div class="product-card__badge">Хит</div>
+                    <div class="product-card__image"><img src="фото/plenki/190prem.jpg" alt="VEGA PREMIUM 190 ST"></div>
+                    <h3 class="product-card__title">VEGA® PREMIUM 190 ST</h3>
+                    <p class="product-card__desc">Глянцевая плёнка для тёмных авто. Толщина 190 мкм.</p>
+                    <div class="product-card__price">66 000 ₽</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=1" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="1">В корзину</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-id="2">
+                    <div class="product-card__badge">Хит</div>
+                    <div class="product-card__image"><img src="фото/plenki/230prem.jpg" alt="VEGA PREMIUM 230 ST"></div>
+                    <h3 class="product-card__title">VEGA® PREMIUM 230 ST</h3>
+                    <p class="product-card__desc">Глянцевая плёнка для тёмных авто. Толщина 230 мкм.</p>
+                    <div class="product-card__price">83 000 ₽</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=2" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="2">В корзину</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-id="3">
+                    <div class="product-card__badge">Премиум</div>
+                    <div class="product-card__image"><img src="фото/plenki/290prem.jpg" alt="VEGA PREMIUM 290 ST"></div>
+                    <h3 class="product-card__title">VEGA® PREMIUM 290 ST</h3>
+                    <p class="product-card__desc">Глянцевая плёнка для тёмных авто. Толщина 290 мкм.</p>
+                    <div class="product-card__price">129 000 ₽</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=3" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="3">В корзину</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-id="4">
+                    <div class="product-card__badge">Премиум</div>
+                    <div class="product-card__image"><img src="фото/plenki/350prem.jpg" alt="VEGA PREMIUM 350 HT"></div>
+                    <h3 class="product-card__title">VEGA® PREMIUM 350 HT</h3>
+                    <p class="product-card__desc">Сверхпрочная глянцевая плёнка. Толщина 350 мкм.</p>
+                    <div class="product-card__price">190 000 ₽</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=4" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="4">В корзину</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-id="5">
+                    <div class="product-card__badge">Широкий рулон</div>
+                    <div class="product-card__image"><img src="фото/plenki/190_182gloss.jpg" alt="VEGA PREMIUM 190 HT 1.82"></div>
+                    <h3 class="product-card__title">VEGA® PREMIUM 190 HT 1.82</h3>
+                    <p class="product-card__desc">Глянцевая плёнка шириной 1.82 м для негабаритных деталей.</p>
+                    <div class="product-card__price">110 000 ₽</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=5" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="5">В корзину</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-id="6">
+                    <div class="product-card__badge">Премиум</div>
+                    <div class="product-card__image"><img src="фото/plenki/ultima200.png" alt="VEGA ULTIMA GLOSS 200"></div>
+                    <h3 class="product-card__title">VEGA® ULTIMA GLOSS 200</h3>
+                    <p class="product-card__desc">Глянцевая плёнка для светлых авто. Толщина 200 мкм.</p>
+                    <div class="product-card__price">65 000 ₽</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=6" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="6">В корзину</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-id="7">
+                    <div class="product-card__badge">Премиум</div>
+                    <div class="product-card__image"><img src="фото/plenki/ultima215.png" alt="VEGA ULTIMA GLOSS 215"></div>
+                    <h3 class="product-card__title">VEGA® ULTIMA GLOSS 215</h3>
+                    <p class="product-card__desc">Глянцевая плёнка для светлых авто. Толщина 215 мкм.</p>
+                    <div class="product-card__price">70 000 ₽</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=7" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="7">В корзину</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-id="8">
+                    <div class="product-card__badge">Матовый</div>
+                    <div class="product-card__image"><img src="фото/plenki/matt190.jpg" alt="VEGA PREMIUM 190 MATTE HT"></div>
+                    <h3 class="product-card__title">VEGA® PREMIUM 190 MATTE HT</h3>
+                    <p class="product-card__desc">Матовая плёнка, высокая термостойкость. Толщина 190 мкм.</p>
+                    <div class="product-card__price">74 000 ₽</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=8" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="8">В корзину</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-id="9">
+                    <div class="product-card__badge">Сатиновый</div>
+                    <div class="product-card__image"><img src="фото/plenki/satin190.jpg" alt="VEGA PREMIUM 190 SATIN HT"></div>
+                    <h3 class="product-card__title">VEGA® PREMIUM 190 SATIN HT</h3>
+                    <p class="product-card__desc">Сатиновая плёнка, уникальный блеск. Толщина 190 мкм.</p>
+                    <div class="product-card__price">74 000 ₽</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=9" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="9">В корзину</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-id="10">
+                    <div class="product-card__badge">Pro</div>
+                    <div class="product-card__image"><img src="фото/plenki/satin_pro190.jpeg" alt="VEGA 190 SATIN PRO"></div>
+                    <h3 class="product-card__title">VEGA® 190 SATIN PRO</h3>
+                    <p class="product-card__desc">Сатиновая плёнка Pro-серии. Толщина 190 мкм.</p>
+                    <div class="product-card__price">54 000 ₽</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=10" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="10">В корзину</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-id="11">
+                    <div class="product-card__badge">Pro</div>
+                    <div class="product-card__image"><img src="фото/plenki/pro190.jpg" alt="VEGA 190 ST PRO"></div>
+                    <h3 class="product-card__title">VEGA® 190 ST PRO</h3>
+                    <p class="product-card__desc">Глянцевая плёнка Pro-серии для тёмных авто.</p>
+                    <div class="product-card__price">46 000 ₽</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=11" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="11">В корзину</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-id="12">
+                    <div class="product-card__badge">Pro</div>
+                    <div class="product-card__image"><img src="фото/plenki/ht_pro190.jpg" alt="VEGA 190 HT PRO"></div>
+                    <h3 class="product-card__title">VEGA® 190 HT PRO</h3>
+                    <p class="product-card__desc">Глянцевая плёнка Pro-серии для светлых авто.</p>
+                    <div class="product-card__price">46 000 ₽</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=12" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="12">В корзину</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-id="13">
+                    <div class="product-card__badge">Новинка</div>
+                    <div class="product-card__image"><img src="фото/plenki/color_ppf.jpg" alt="VEGA COLOR PPF PREMIUM"></div>
+                    <h3 class="product-card__title">VEGA® COLOR PPF PREMIUM</h3>
+                    <p class="product-card__desc">Цветная плёнка. Более 60 оттенков. Толщина 200 мкм.</p>
+                    <div class="product-card__price">Цена по запросу</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=13" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="13">В корзину</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-id="14">
+                    <div class="product-card__badge">Цветная</div>
+                    <div class="product-card__image"><img src="фото/plenki/red_color_ppf.jpg" alt="VEGA COLOR PPF"></div>
+                    <h3 class="product-card__title">VEGA® COLOR PPF</h3>
+                    <p class="product-card__desc">Цветная полиуретановая плёнка. Более 70 оттенков.</p>
+                    <div class="product-card__price">Цена по запросу</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=14" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="14">В корзину</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-id="15">
+                    <div class="product-card__badge">Цветная</div>
+                    <div class="product-card__image"><img src="фото/plenki/ultima_color_ppf.png" alt="VEGA ULTIMA COLOR PPF"></div>
+                    <h3 class="product-card__title">VEGA® ULTIMA COLOR PPF</h3>
+                    <p class="product-card__desc">Цветная плёнка премиум-класса. Более 80 цветов. 210 мкм.</p>
+                    <div class="product-card__price">Цена по запросу</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=15" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="15">В корзину</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-id="16">
+                    <div class="product-card__badge">Образцы</div>
+                    <div class="product-card__image"><img src="фото/plenki/veer_color_prem.jpg" alt="Образцы VEGA COLOR PREMIUM"></div>
+                    <h3 class="product-card__title">Образцы VEGA® COLOR PREMIUM</h3>
+                    <p class="product-card__desc">Веер с образцами цветов премиальной линейки. Более 60 цветов.</p>
+                    <div class="product-card__price">Цена по запросу</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=16" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="16">В корзину</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-id="17">
+                    <div class="product-card__badge">Образцы</div>
+                    <div class="product-card__image"><img src="фото/plenki/color.png" alt="Образцы VEGA COLOR"></div>
+                    <h3 class="product-card__title">Образцы VEGA® COLOR</h3>
+                    <p class="product-card__desc">Веер с образцами цветов. Более 60 вариантов расцветок.</p>
+                    <div class="product-card__price">Цена по запросу</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=17" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="17">В корзину</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- АКСЕССУАРЫ -->
+            <h3 class="category-title" data-category="accessories">Аксессуары и химия</h3>
+            <div class="products__grid" data-category="accessories">
+                <div class="product-card" data-id="18">
+                    <div class="product-card__badge">Химия</div>
+                    <div class="product-card__image"><img src="фото/accsesuar/ust_konc.jpg" alt="Установочный концентрат"></div>
+                    <h3 class="product-card__title">Установочный концентрат</h3>
+                    <p class="product-card__desc">Для приготовления рабочего раствора при установке плёнок.</p>
+                    <div class="product-card__price">800 ₽</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=18" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="18">В корзину</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-id="19">
+                    <div class="product-card__badge">Химия</div>
+                    <div class="product-card__image"><img src="фото/accsesuar/gel.jpg" alt="Установочный гель"></div>
+                    <h3 class="product-card__title">Установочный гель</h3>
+                    <p class="product-card__desc">Для быстрой локальной адгезии при оклейке сложных деталей.</p>
+                    <div class="product-card__price">800 ₽</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=19" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="19">В корзину</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-id="20">
+                    <div class="product-card__badge">Инструмент</div>
+                    <div class="product-card__image"><img src="фото/accsesuar/rakel.jpg" alt="Ракель VEGA"></div>
+                    <h3 class="product-card__title">Ракель VEGA</h3>
+                    <p class="product-card__desc">Для удаления влаги из-под плёнки при установке.</p>
+                    <div class="product-card__price">500 ₽</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=20" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="20">В корзину</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-id="21">
+                    <div class="product-card__badge">Инструмент</div>
+                    <div class="product-card__image"><img src="фото/accsesuar/lopata.jpg" alt="Лопатка VEGA"></div>
+                    <h3 class="product-card__title">Лопатка VEGA</h3>
+                    <p class="product-card__desc">Для точечной работы с плёнкой на углах и у уплотнителей.</p>
+                    <div class="product-card__price">Цена по запросу</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=21" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="21">В корзину</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- МЕРЧ -->
+            <h3 class="category-title" data-category="merch">Мерч VEGA</h3>
+            <div class="products__grid" data-category="merch">
+                <div class="product-card" data-id="22">
+                    <div class="product-card__badge">Мерч</div>
+                    <div class="product-card__image"><img src="фото/merch/bej.jpg" alt="Футболка бежевая"></div>
+                    <h3 class="product-card__title">Футболка бежевая</h3>
+                    <p class="product-card__desc">Фирменная футболка VEGA. Цвет: бежевый.</p>
+                    <div class="product-card__price">5 000 ₽</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=22" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="22">В корзину</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-id="23">
+                    <div class="product-card__badge">Мерч</div>
+                    <div class="product-card__image"><img src="фото/merch/green.jpg" alt="Футболка зелёная"></div>
+                    <h3 class="product-card__title">Футболка зелёная</h3>
+                    <p class="product-card__desc">Фирменная футболка VEGA. Цвет: зелёный.</p>
+                    <div class="product-card__price">5 000 ₽</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=23" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="23">В корзину</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-id="24">
+                    <div class="product-card__badge">Мерч</div>
+                    <div class="product-card__image"><img src="фото/merch/red.jpg" alt="Футболка красная"></div>
+                    <h3 class="product-card__title">Футболка красная</h3>
+                    <p class="product-card__desc">Фирменная футболка VEGA. Цвет: красный.</p>
+                    <div class="product-card__price">5 000 ₽</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=24" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="24">В корзину</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-id="25">
+                    <div class="product-card__badge">Мерч</div>
+                    <div class="product-card__image"><img src="фото/merch/grey.jpg" alt="Футболка серая"></div>
+                    <h3 class="product-card__title">Футболка серая</h3>
+                    <p class="product-card__desc">Фирменная футболка VEGA. Цвет: серый.</p>
+                    <div class="product-card__price">5 000 ₽</div>
+                    <div class="product-card__actions">
+                        <a href="product.html?id=25" class="btn btn-outline btn-sm">Подробнее</a>
+                        <button class="btn btn-primary btn-sm add-to-cart" data-id="25">В корзину</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="products__footnote">
+                <p>Полный каталог на сайте <a href="https://vegappf.com" target="_blank">vegappf.com</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПОДВАЛ -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">
+                <span class="logo__icon">✦</span>
+                <span class="logo__text">VEGA <span class="logo__accent">PPF</span></span>
+                <p>© 2026 VEGA Paint Protection Film</p>
+            </div>
+            <nav class="footer__nav">
+                <a href="index.html">Главная</a>
+                <a href="catalog.html">Каталог</a>
+                <a href="cart.html">Корзина</a>
+                <a href="register.html">Регистрация</a>
+            </nav>
+            <div class="footer__contacts">
+                <a href="tel:+78005550027">8 (800) 555-00-27</a>
+                <a href="mailto:sales@vegappf.com">sales@vegappf.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

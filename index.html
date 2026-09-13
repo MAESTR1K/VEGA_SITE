@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+    <div class="scroll-progress" id="scrollProgress"></div>
     <!-- ШАПКА -->
     <header class="header">
     <div class="container header__inner">
@@ -21,13 +22,17 @@
         <nav class="nav" id="mobileNav">
             <a href="#configurator">3D-конфигуратор</a>
             <a href="#about">О бренде</a>
-            <a href="#history">История</a>
             <a href="#steps">Как работаем</a>
+            <a href="#school">Школа VEGA</a>
             <a href="#blog">Блог</a>
-            <a href="#products">Продукция</a>
-            <a href="#advantages">Преимущества</a>
+            <a href="#products">Каталог</a>
             <a href="#contacts">Контакты</a>
         </nav>
+        <a href="cart.html" class="header__cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="cartCount">0</span>
+        </a>
+        <a href="register.html" class="header__login">Войти</a>
 
         <a href="tel:+78005550027" class="header__phone">8 (800) 555-00-27</a>
 
@@ -39,21 +44,22 @@
 
     <!-- ГЛАВНЫЙ ЭКРАН -->
     <section class="hero">
-        <div class="container hero__inner">
-            <div class="hero__content">
-                <div class="hero__badge">Официальный представитель в Москве</div>
-                <h1 class="hero__title">Антигравийная защита <br><span class="hero__highlight">VEGA PPF</span></h1>
-                <p class="hero__desc">Полиуретановые плёнки премиум-класса для защиты ЛКП от сколов, царапин и реагентов.</p>
-                <div class="hero__actions">
-                    <a href="#products" class="btn btn-primary">Выбрать плёнку</a>
-                    <a href="#contacts" class="btn btn-svaz">Связаться</a>
+            <div class="container hero__inner">
+                <div class="hero__content">
+                    <div class="hero__badge">Официальный представитель в Москве</div>
+                    <h1 class="hero__title">Антигравийная защита <br><span class="hero__highlight">VEGA PPF</span></h1>
+                    <p class="hero__desc">Полиуретановые плёнки премиум-класса для защиты ЛКП от сколов, царапин и реагентов.</p>
+                    <div class="hero__actions">
+                        <a href="#products" class="btn btn-primary">Выбрать плёнку</a>
+                        <a href="#contacts" class="btn btn-svaz">Связаться</a>
+                    </div>
+                    <div class="hero__stats">
+                        <div><span>5+</span> лет гарантии</div>
+                        <div><span>24/7</span> поддержка</div>
+                        <div><span>По РФ и СНГ</span> доставка</div>
+                    </div>
                 </div>
-                <div class="hero__stats">
-                    <div><span>5+</span> лет гарантии</div>
-                    <div><span>24/7</span> поддержка</div>
-                    <div><span>По РФ и СНГ</span> доставка</div>
-                </div>
-            </div>
+            
             <!-- <div class="hero__image">
                 <div class="hero__image-placeholder">
                     <img src="фото/logo/stenka.jpg">
@@ -85,12 +91,12 @@
                     </a>
                 </div>
                 <div class="configurator-cta__preview">
-                    <div class="configurator-cta__mockup">
+                    <a href="configurator.html" class="configurator-cta__mockup">
                         <img src="фото/about/config.png" alt="3D-конфигуратор VEGA PPF">
                         <div class="mockup-overlay">
                             <span class="mockup-play">▶</span>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -355,297 +361,57 @@
         </div>
     </div>
 
-    <!-- КАТАЛОГ (все товары) -->
-    <section class="products" id="products">
+    <!-- КАТАЛОГ — ВИЗИТКА -->
+    <section class="catalog-preview" id="products">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Каталог</span>
-                <h2 class="section-title">Вся продукция <span class="highlight">VEGA PPF</span></h2>
-                <p class="section-subtitle">Плёнки, аксессуары и мерч для вашего автомобиля</p>
+                <h2 class="section-title">Продукция <span class="highlight">VEGA PPF</span></h2>
+                <p class="section-subtitle">Плёнки, аксессуары и мерч — всё для защиты вашего автомобиля</p>
             </div>
-            <!-- Плёнки -->
-            <h3 class="category-title">Плёнки VEGA PPF</h3>
-            <div class="products__grid">
-                <!-- Карточки товаров (все 17 штук) -->
-                <div class="product-card">
-                    <div class="product-card__badge">Хит</div>
-                    <div class="product-card__image">
-                        <img src="фото/plenki/190prem.jpg" alt="VEGA PREMIUM 190 ST">
-                    </div>
-                    <h3 class="product-card__title">VEGA® PREMIUM 190 ST</h3>
-                    <p class="product-card__desc">Глянцевая плёнка для тёмных авто. Толщина 190 мкм.</p>
-                    <div class="product-card__price">66 000 ₽</div>
-                    <a href="https://vegappf.com/vega-190-st-series" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+
+            <!-- Превью-карточки -->
+            <div class="catalog-preview__grid">
+            <a href="catalog.html?category=films" class="catalog-preview__item">
+                <div class="catalog-preview__image">
+                    <img src="фото/plenki/190prem.jpg" alt="VEGA PREMIUM 190 ST">
                 </div>
-                <!-- Добавьте остальные товары по аналогии, чтобы не загромождать ответ, но в реальном файле они должны быть все.
-                     Для краткости я покажу все позиции сжато: -->
-                <!-- VEGA PREMIUM 230 ST -->
-                <div class="product-card">
-                    <div class="product-card__badge">Хит</div>
-                    <div class="product-card__image">
-                        <img src="фото/plenki/230prem.jpg" alt="VEGA PREMIUM 230 ST">
-                    </div>
-                    <h3 class="product-card__title">VEGA® PREMIUM 230 ST</h3>
-                    <p class="product-card__desc">Глянцевая плёнка для тёмных авто. Толщина 230 мкм.</p>
-                    <div class="product-card__price">83 000 ₽</div>
-                    <a href="https://vegappf.com/vega-230-st-series" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                <div class="catalog-preview__info">
+                    <h3>Плёнки VEGA PPF</h3>
+                    <p>Глянцевые, матовые, сатиновые и цветные плёнки</p>
+                    <span class="catalog-preview__count">17 товаров →</span>
                 </div>
-                <!-- VEGA PREMIUM 290 ST -->
-                <div class="product-card">
-                    <div class="product-card__badge">Премиум</div>
-                    <div class="product-card__image">
-                        <img src="фото/plenki/290prem.jpg" alt="VEGA PREMIUM 290 ST">
-                    </div>
-                    <h3 class="product-card__title">VEGA® PREMIUM 290 ST</h3>
-                    <p class="product-card__desc">Глянцевая плёнка для тёмных авто. Толщина 290 мкм.</p>
-                    <div class="product-card__price">129 000 ₽</div>
-                    <a href="https://vegappf.com/vega-290-st-series" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+            </a>
+
+            <a href="catalog.html?category=accessories" class="catalog-preview__item">
+                <div class="catalog-preview__image">
+                    <img src="фото/accsesuar/rakel.jpg" alt="Аксессуары">
                 </div>
-                <!-- VEGA PREMIUM 350 HT -->
-                <div class="product-card">
-                    <div class="product-card__badge">Премиум</div>
-                    <div class="product-card__image">
-                        <img src="фото/plenki/350prem.jpg" alt="VEGA PREMIUM 350 HT">
-                    </div>
-                    <h3 class="product-card__title">VEGA® PREMIUM 350 HT</h3>
-                    <p class="product-card__desc">Сверхпрочная глянцевая плёнка. Толщина 350 мкм.</p>
-                    <div class="product-card__price">190 000 ₽</div>
-                    <a href="https://vegappf.com/vega-350" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                <div class="catalog-preview__info">
+                    <h3>Аксессуары и химия</h3>
+                    <p>Инструменты и химия для установки плёнок</p>
+                    <span class="catalog-preview__count">4 товара →</span>
                 </div>
-                <!-- VEGA PREMIUM 190 HT 1.82 -->
-                <div class="product-card">
-                    <div class="product-card__badge">Широкий рулон</div>
-                    <div class="product-card__image">
-                        <img src="фото/plenki/190_182gloss.jpg" alt="VEGA PREMIUM 190 HT 1.82">
-                    </div>
-                    <h3 class="product-card__title">VEGA® PREMIUM 190 HT 1.82</h3>
-                    <p class="product-card__desc">Глянцевая плёнка шириной 1.82 м для негабаритных деталей.</p>
-                    <div class="product-card__price">110 000 ₽</div>
-                    <a href="https://vegappf.com/vega-1-82-gloss-polyurethane-film" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+            </a>
+
+            <a href="catalog.html?category=merch" class="catalog-preview__item">
+                <div class="catalog-preview__image">
+                    <img src="фото/merch/bej.jpg" alt="Мерч VEGA">
                 </div>
-                <!-- VEGA ULTIMA GLOSS 200 -->
-                <div class="product-card">
-                    <div class="product-card__badge">Премиум</div>
-                    <div class="product-card__image">
-                        <img src="фото/plenki/ultima200.png" alt="VEGA ULTIMA GLOSS 200">
-                    </div>
-                    <h3 class="product-card__title">VEGA® ULTIMA GLOSS 200</h3>
-                    <p class="product-card__desc">Глянцевая плёнка для светлых авто. Толщина 200 мкм.</p>
-                    <div class="product-card__price">65 000 ₽</div>
-                    <a href="https://vegappf.com/vega%C2%AE-ultima-200-gloss" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
+                <div class="catalog-preview__info">
+                    <h3>Мерч VEGA</h3>
+                    <p>Фирменная одежда и аксессуары бренда</p>
+                    <span class="catalog-preview__count">4 товара →</span>
                 </div>
-                <!-- VEGA ULTIMA GLOSS 215 -->
-                <div class="product-card">
-                    <div class="product-card__badge">Премиум</div>
-                    <div class="product-card__image">
-                        <img src="фото/plenki/ultima215.png" alt="VEGA ULTIMA GLOSS 215">
-                    </div>
-                    <h3 class="product-card__title">VEGA® ULTIMA GLOSS 215</h3>
-                    <p class="product-card__desc">Глянцевая плёнка для светлых авто. Толщина 215 мкм.</p>
-                    <div class="product-card__price">70 000 ₽</div>
-                    <a href="https://vegappf.com/vega%C2%AE-ultima-215-gloss" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
-                </div>
-                <!-- VEGA PREMIUM 190 MATTE HT -->
-                <div class="product-card">
-                    <div class="product-card__badge">Матовый</div>
-                    <div class="product-card__image">
-                        <img src="фото/plenki/matt190.jpg" alt="VEGA MATTE HT">
-                    </div>
-                    <h3 class="product-card__title">VEGA® PREMIUM 190 MATTE HT</h3>
-                    <p class="product-card__desc">Матовая плёнка, высокая термостойкость. Толщина 190 мкм.</p>
-                    <div class="product-card__price">74 000 ₽</div>
-                    <a href="https://vegappf.com/vega-190-matte-ht" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
-                </div>
-                <!-- VEGA PREMIUM 190 SATIN HT -->
-                <div class="product-card">
-                    <div class="product-card__badge">Сатиновый</div>
-                    <div class="product-card__image">
-                        <img src="фото/plenki/satin190.jpg" alt="VEGA SATIN HT">
-                    </div>
-                    <h3 class="product-card__title">VEGA® PREMIUM 190 SATIN HT</h3>
-                    <p class="product-card__desc">Сатиновая плёнка, уникальный блеск. Толщина 190 мкм.</p>
-                    <div class="product-card__price">74 000 ₽</div>
-                    <a href="https://vegappf.com/vega-190-satin" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
-                </div>
-                <!-- VEGA 190 SATIN PRO -->
-                <div class="product-card">
-                    <div class="product-card__badge">Pro</div>
-                    <div class="product-card__image">
-                        <img src="фото/plenki/satin_pro190.jpeg" alt="VEGA 190 SATIN PRO">
-                    </div>
-                    <h3 class="product-card__title">VEGA® 190 SATIN PRO</h3>
-                    <p class="product-card__desc">Сатиновая плёнка Pro-серии. Толщина 190 мкм.</p>
-                    <div class="product-card__price">54 000 ₽</div>
-                    <a href="https://vegappf.com/vega-190-pro-satin" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
-                </div>
-                <!-- VEGA 190 ST PRO -->
-                <div class="product-card">
-                    <div class="product-card__badge">Pro</div>
-                    <div class="product-card__image">
-                        <img src="фото/plenki/pro190.jpg" alt="VEGA 190 ST PRO">
-                    </div>
-                    <h3 class="product-card__title">VEGA® 190 ST PRO</h3>
-                    <p class="product-card__desc">Глянцевая плёнка Pro-серии для тёмных авто.</p>
-                    <div class="product-card__price">46 000 ₽</div>
-                    <a href="https://vegappf.com/vega-190-pro" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
-                </div>
-                <!-- VEGA 190 HT PRO -->
-                <div class="product-card">
-                    <div class="product-card__badge">Pro</div>
-                    <div class="product-card__image">
-                        <img src="фото/plenki/ht_pro190.jpg" alt="VEGA 190 HT PRO">
-                    </div>
-                    <h3 class="product-card__title">VEGA® 190 HT PRO</h3>
-                    <p class="product-card__desc">Глянцевая плёнка Pro-серии для светлых авто.</p>
-                    <div class="product-card__price">46 000 ₽</div>
-                    <a href="https://vegappf.com/vega-190-pro-ht" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
-                </div>
-                <!-- VEGA COLOR PPF PREMIUM -->
-                <div class="product-card">
-                    <div class="product-card__badge">Новинка</div>
-                    <div class="product-card__image">
-                        <img src="фото/plenki/color_ppf.jpg" alt="VEGA COLOR PPF PREMIUM">
-                    </div>
-                    <h3 class="product-card__title">VEGA® COLOR PPF PREMIUM</h3>
-                    <p class="product-card__desc">Цветная плёнка. Более 60 оттенков. Толщина 200 мкм.</p>
-                    <div class="product-card__price">Цена по запросу</div>
-                    <a href="https://vegappf.com/color-film-vega-color-premium" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
-                </div>
-                <!-- VEGA COLOR PPF -->
-                <div class="product-card">
-                    <div class="product-card__badge">Цветная</div>
-                    <div class="product-card__image">
-                        <img src="фото/plenki/red_color_ppf.jpg" alt="VEGA COLOR PPF">
-                    </div>
-                    <h3 class="product-card__title">VEGA® COLOR PPF</h3>
-                    <p class="product-card__desc">Цветная полиуретановая плёнка. Более 70 оттенков.</p>
-                    <div class="product-card__price">Цена по запросу</div>
-                    <a href="https://vegappf.com/vega-color-ppf-color-film" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
-                </div>
-                <!-- VEGA ULTIMA COLOR PPF -->
-                <div class="product-card">
-                    <div class="product-card__badge">Цветная</div>
-                    <div class="product-card__image">
-                        <img src="фото/plenki/ultima_color_ppf.png" alt="VEGA ULTIMA COLOR PPF">
-                    </div>
-                    <h3 class="product-card__title">VEGA® ULTIMA COLOR PPF</h3>
-                    <p class="product-card__desc">Цветная плёнка премиум-класса. Более 80 цветов. 210 мкм.</p>
-                    <div class="product-card__price">Цена по запросу</div>
-                    <a href="https://vegappf.com/color-film-vega-ultima-color-ppf" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
-                </div>
-                <!-- Образцы VEGA COLOR PREMIUM -->
-                <div class="product-card">
-                    <div class="product-card__badge">Образцы</div>
-                    <div class="product-card__image">
-                        <img src="фото/plenki/veer_color_prem.jpg" alt="Образцы VEGA COLOR PREMIUM">
-                    </div>
-                    <h3 class="product-card__title">Образцы VEGA® COLOR PREMIUM</h3>
-                    <p class="product-card__desc">Веер с образцами цветов премиальной линейки. Более 60 цветов.</p>
-                    <div class="product-card__price">Цена по запросу</div>
-                    <a href="https://vegappf.com/vega-color-premium" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
-                </div>
-                <!-- Образцы VEGA COLOR -->
-                <div class="product-card">
-                    <div class="product-card__badge">Образцы</div>
-                    <div class="product-card__image">
-                        <img src="фото/plenki/color.png" alt="Образцы VEGA COLOR">
-                    </div>
-                    <h3 class="product-card__title">Образцы VEGA® COLOR</h3>
-                    <p class="product-card__desc">Веер с образцами цветов. Более 60 вариантов расцветок.</p>
-                    <div class="product-card__price">Цена по запросу</div>
-                    <a href="https://vegappf.com/vega-color-ppf-filter-samples-(fan)" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
-                </div>
-            </div>
-            <!-- Аксессуары -->
-            <h3 class="category-title">Аксессуары и химия</h3>
-            <div class="products__grid">
-                <div class="product-card">
-                    <div class="product-card__badge">Химия</div>
-                    <div class="product-card__image">
-                        <img src="фото/accsesuar/ust_konc.jpg" alt="Установочный концентрат">
-                    </div>
-                    <h3 class="product-card__title">Установочный концентрат</h3>
-                    <p class="product-card__desc">Для приготовления рабочего раствора при установке плёнок.</p>
-                    <div class="product-card__price">800 ₽</div>
-                    <a href="https://vegappf.com/installation-concentrate" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
-                </div>
-                <div class="product-card">
-                    <div class="product-card__badge">Химия</div>
-                    <div class="product-card__image">
-                        <img src="фото/accsesuar/gel.jpg" alt="Установочный гель">
-                    </div>
-                    <h3 class="product-card__title">Установочный гель</h3>
-                    <p class="product-card__desc">Для быстрой локальной адгезии при оклейке сложных деталей.</p>
-                    <div class="product-card__price">800 ₽</div>
-                    <a href="https://vegappf.com/installation-gel" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
-                </div>
-                <div class="product-card">
-                    <div class="product-card__badge">Инструмент</div>
-                    <div class="product-card__image">
-                        <img src="фото/accsesuar/rakel.jpg" alt="Ракель VEGA">
-                    </div>
-                    <h3 class="product-card__title">Ракель VEGA</h3>
-                    <p class="product-card__desc">Для удаления влаги из-под плёнки при установке.</p>
-                    <div class="product-card__price">500 ₽</div>
-                    <a href="https://vegappf.com/squeegee-vega" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
-                </div>
-                <div class="product-card">
-                    <div class="product-card__badge">Инструмент</div>
-                    <div class="product-card__image">
-                        <img src="фото/accsesuar/lopata.jpg" alt="Лопатка VEGA">
-                    </div>
-                    <h3 class="product-card__title">Лопатка VEGA</h3>
-                    <p class="product-card__desc">Для точечной работы с плёнкой на углах и у уплотнителей.</p>
-                    <div class="product-card__price">Цена по запросу</div>
-                    <a href="https://vegappf.com/vega-spatula-for-working-with-film" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
-                </div>
-            </div>
-            <!-- Мерч -->
-            <h3 class="category-title">Мерч VEGA</h3>
-            <div class="products__grid">
-                <div class="product-card">
-                    <div class="product-card__badge">Мерч</div>
-                    <div class="product-card__image">
-                        <img src="фото/merch/bej.jpg" alt="Футболка бежевая">
-                    </div>
-                    <h3 class="product-card__title">Футболка бежевая</h3>
-                    <p class="product-card__desc">Фирменная футболка VEGA. Цвет: бежевый.</p>
-                    <div class="product-card__price">5 000 ₽</div>
-                    <a href="https://vegappf.com/futbolka-bezhevaya" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
-                </div>
-                <div class="product-card">
-                    <div class="product-card__badge">Мерч</div>
-                    <div class="product-card__image">
-                        <img src="фото/merch/green.jpg" alt="Футболка зелёная">
-                    </div>
-                    <h3 class="product-card__title">Футболка зелёная</h3>
-                    <p class="product-card__desc">Фирменная футболка VEGA. Цвет: зелёный.</p>
-                    <div class="product-card__price">5 000 ₽</div>
-                    <a href="https://vegappf.com/t-shirt-green" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
-                </div>
-                <div class="product-card">
-                    <div class="product-card__badge">Мерч</div>
-                    <div class="product-card__image">
-                        <img src="фото/merch/red.jpg" alt="Футболка красная">
-                    </div>
-                    <h3 class="product-card__title">Футболка красная</h3>
-                    <p class="product-card__desc">Фирменная футболка VEGA. Цвет: красный.</p>
-                    <div class="product-card__price">5 000 ₽</div>
-                    <a href="https://vegappf.com/t-shirt-red" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
-                </div>
-                <div class="product-card">
-                    <div class="product-card__badge">Мерч</div>
-                    <div class="product-card__image">
-                        <img src="фото/merch/grey.jpg" alt="Футболка серая">
-                    </div>
-                    <h3 class="product-card__title">Футболка серая</h3>
-                    <p class="product-card__desc">Фирменная футболка VEGA. Цвет: серый.</p>
-                    <div class="product-card__price">5 000 ₽</div>
-                    <a href="https://vegappf.com/t-shirt-gray" target="_blank" class="btn btn-outline btn-sm">Подробнее</a>
-                </div>
-            </div>
-            <div class="products__footnote">
-                <p>Полный каталог на сайте <a href="https://vegappf.com" target="_blank">vegappf.com</a></p>
+            </a>
+        </div>
+
+            <!-- Кнопка -->
+            <div class="catalog-preview__cta">
+                <a href="catalog.html" class="btn btn-primary btn-large">
+                    Смотреть весь каталог
+                    <span class="btn-arrow">→</span>
+                </a>
             </div>
         </div>
     </section>
@@ -801,7 +567,7 @@
                 <h2 class="section-title">Мы на <span class="highlight">карте</span></h2>
                 <p class="section-subtitle">г. Москва, Ленинградское шоссе, д. 71</p>
             </div>
-            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Aff92e73dd107dfe637e3c34a7d276332a9c95894add1f032347e8990013f6d4a&amp;source=constructor" width="887" height="360" frameborder="0"></iframe>
+            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Aff92e73dd107dfe637e3c34a7d276332a9c95894add1f032347e8990013f6d4a&amp;source=constructor" width="100%" height="360" frameborder="0" style="border-radius:24px;"></iframe>
     </section>
 
     <!-- ПОДВАЛ -->

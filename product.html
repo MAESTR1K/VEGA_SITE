@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Товар — VEGA PPF</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="фото/logo/logo.png.webp" type="image/jpeg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header__inner">
+            <a href="index.html" class="logo">
+                <img src="фото/logo/logo.png.webp" alt="logo">
+                <span class="logo__text">VEGA <span class="logo__accent">PPF</span></span>
+            </a>
+            <nav class="nav" id="mobileNav">
+                <a href="index.html">Главная</a>
+                <a href="catalog.html">Каталог</a>
+                <a href="cart.html">Корзина</a>
+                <a href="register.html">Войти</a>
+            </nav>
+            <a href="cart.html" class="header__cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </a>
+            <button class="burger" id="burgerBtn" aria-label="Меню">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- КАРТОЧКА ТОВАРА -->
+    <section class="product-page">
+        <div class="container">
+            <div class="product-page__inner" id="productContainer">
+                <!-- Сюда JS подставит товар -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">
+                <span class="logo__icon">✦</span>
+                <span class="logo__text">VEGA <span class="logo__accent">PPF</span></span>
+                <p>© 2026 VEGA Paint Protection Film</p>
+            </div>
+            <nav class="footer__nav">
+                <a href="index.html">Главная</a>
+                <a href="catalog.html">Каталог</a>
+                <a href="cart.html">Корзина</a>
+                <a href="register.html">Регистрация</a>
+            </nav>
+            <div class="footer__contacts">
+                <a href="tel:+78005550027">8 (800) 555-00-27</a>
+                <a href="mailto:sales@vegappf.com">sales@vegappf.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
