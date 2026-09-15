@@ -298,34 +298,23 @@
         // ============================================================
         // 1. ПАЛИТРА VEGA PPF
         // ============================================================
-        const COLORS = [
-            { name: 'TPU Metallic Glacier Blue', hex: '#a5d0e0', type: 'gloss' },
-            { "name": "TPU Gentian Blue",        "hex": "#1e4a9e", "type": "metallic" },
-            { "name": "TPU Sapphire",            "hex": "#0f52ba", "type": "metallic" },
-            { "name": "TPU Lugano Blue",         "hex": "#1e4b9c", "type": "gloss" },
-            { "name": "TPU Navarre Blue",        "hex": "#1e4270", "type": "metallic" },
-            { "name": "TPU Royal Indigo",        "hex": "#2a3a8c", "type": "metallic" },
-            { "name": "TPU Tanzanite Blue",      "hex": "#22335a", "type": "metallic" },
-            { "name": "TPU Metallic Blue",       "hex": "#2a5aae", "type": "metallic" },
-            { "name": "TPU Diamond Blue",        "hex": "#3a6ab8", "type": "metallic" },
-            { "name": "TPU Shadow Blue",         "hex": "#19578B", "type": "metallic" },
+        let COLORS = [];
 
-            { "name": "TPU Deep Glacier Blue", "hex": "#8fc4dc", "type": "gloss" },
-            { "name": "TPU Carbon Grayish Blue",    "hex": "#1e2438", "type": "metallic" },
-            { "name": "TPU Byron Bay Blue",         "hex": "#1a2a3a", "type": "metallic" },
-            { "name": "TPU Blue Velvet",            "hex": "#0a1428", "type": "gloss" },
-            { "name": "TPU Antarctic Star Blue",    "hex": "#1a2438", "type": "metallic" },
-            { "name": "TPU Glacier Blue",           "hex": "#8ab0c8", "type": "metallic" },
-            { "name": "TPU GT Silver",              "hex": "#8a8f95", "type": "metallic" },
-            { "name": "TPU Silver Fox Gray",        "hex": "#b8bcb8", "type": "metallic" },
-            { "name": "TPU Sea Wind Blue",          "hex": "#5a9ab0", "type": "gloss" },
-            { "name": "TPU Meisen Blue",            "hex": "#4a7a8a", "type": "gloss" },
-            { "name": "TPU Shark Blue",             "hex": "#6a8aa0", "type": "metallic" },
-            { "name": "TPU Metallic Fog Blue",      "hex": "#2a5a8a", "type": "metallic" },
-            { "name": "TPU Miami Blue",             "hex": "#0a9ad0", "type": "gloss" },
-            { "name": "TPU Porcelian Blue",         "hex": "#4a7a9a", "type": "gloss" },
-            { "name": "TPU Sepang Blue",            "hex": "#1a64cc", "type": "metallic" }
-            ];
+        async function loadColors() {
+            try {
+                const res = await fetch('data/colors.json');
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                COLORS = data.filter(c => c.is_active !== false);
+                console.log(`Загружено ${COLORS.length} цветов`);
+            } catch (err) {
+                console.error('Не удалось загрузить colors.json:', err);
+                COLORS = [
+                    { id: 1, name: 'TPU Metallic Glacier Blue', hex: '#a5d0e0', type: 'gloss', is_active: true }
+                ];
+                setStatus('Не удалось загрузить палитру', true);
+            }
+        }
 
         // ============================================================
         // 2. ТИПЫ ПЛЁНОК
@@ -578,9 +567,8 @@
         function onModelLoaded() {
             loadedCount++;
             if (loadedCount === totalModels) {
-                setStatus('✅ Модель загружена');
+                setStatus('Модель загружена');
                 controls.autoRotate = false;
-                setTimeout(() => applyColor(COLORS[0].hex, COLORS[0].name, COLORS[0].type), 100);
             }
         }
 
@@ -698,28 +686,39 @@
         // ============================================================
         const colorPicker = document.getElementById('colorPicker');
 
-        COLORS.forEach((c, index) => {
-            const btn = document.createElement('button');
-            btn.className = 'color-btn';
-            btn.style.background = c.hex;
-            btn.dataset.hex = c.hex;
-            btn.dataset.name = c.name;
-            btn.dataset.type = c.type;
+        async function initColorPicker() {
+            await loadColors();
 
-            const tooltip = document.createElement('span');
-            tooltip.className = 'tooltip';
-            tooltip.textContent = c.name;
-            btn.appendChild(tooltip);
+            COLORS.forEach((c, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'color-btn';
+                btn.style.background = c.hex;
+                btn.dataset.hex = c.hex;
+                btn.dataset.name = c.name;
+                btn.dataset.type = c.type;
+                btn.dataset.id = c.id;
 
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.color-btn').forEach((b) => b.classList.remove('active'));
-                btn.classList.add('active');
-                applyColor(c.hex, c.name, c.type);
+                const tooltip = document.createElement('span');
+                tooltip.className = 'tooltip';
+                tooltip.textContent = c.name;
+                btn.appendChild(tooltip);
+
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.color-btn').forEach((b) => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    applyColor(c.hex, c.name, c.type);
+                });
+
+                if (index === 0) btn.classList.add('active');
+                colorPicker.appendChild(btn);
             });
 
-            if (index === 0) btn.classList.add('active');
-            colorPicker.appendChild(btn);
-        });
+            if (COLORS.length > 0) {
+                applyColor(COLORS[0].hex, COLORS[0].name, COLORS[0].type);
+            }
+        }
+
+        initColorPicker();
 
         // ============================================================
         // 14. РЕСАЙЗ И АНИМАЦИЯ
