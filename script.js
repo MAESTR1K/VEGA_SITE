@@ -94,21 +94,40 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // ============================================================
 const form = document.getElementById('contactForm');
 if (form) {
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', async function(e) {
         e.preventDefault();
         const name = document.getElementById('name')?.value.trim();
         const phone = document.getElementById('phone')?.value.trim();
+        const message = document.getElementById('message')?.value.trim();
+
         if (!name || !phone) {
             showToast('Заполните имя и телефон', 'error');
             return;
         }
-        showToast('Спасибо! Мы свяжемся с вами в ближайшее время.', 'success');
-        form.reset();
+
+        try {
+            const res = await fetch('/api/contacts', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, phone, message })
+            });
+
+            if (!res.ok) {
+                const err = await res.json();
+                throw new Error(err.error || 'Ошибка отправки');
+            }
+
+            showToast('Спасибо! Мы свяжемся с вами в ближайшее время.', 'success');
+            form.reset();
+        } catch (err) {
+            console.error('Ошибка:', err);
+            showToast(err.message || 'Не удалось отправить заявку', 'error');
+        }
     });
 }
 
 // ============================================================
-// МАСКА ТЕЛЕФОНА (универсальная — для всех tel-полей)
+// МАСКА ТЕЛЕФОНА
 // ============================================================
 document.querySelectorAll('input[type="tel"]').forEach(input => {
     input.addEventListener('input', function() {
@@ -127,9 +146,9 @@ document.querySelectorAll('input[type="tel"]').forEach(input => {
 });
 
 // ============================================================
-// МОДАЛЬНЫЕ ОКНА
+// МОДАЛЬНЫЕ ОКНА БЛОГА
 // ============================================================
-const modals = document.querySelectorAll('.modal-overlay');
+const modals = document.querySelectorAll('.modal-overlay:not(.confirm-overlay)');
 const openTriggers = document.querySelectorAll('.open-modal, .blog__post');
 
 function openModal(id) {
@@ -177,24 +196,6 @@ modals.forEach(modal => {
 
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeAllModals();
-});
-
-// Кнопки внутри модалок
-document.querySelectorAll('.modal-window .btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        const modal = this.closest('.modal-overlay');
-        if (modal) {
-            closeModal(modal);
-            const href = this.getAttribute('href');
-            if (href && href.startsWith('#')) {
-                e.preventDefault();
-                setTimeout(() => {
-                    const target = document.querySelector(href);
-                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 300);
-            }
-        }
-    });
 });
 
 // ============================================================
@@ -308,7 +309,7 @@ const PRODUCTS = [
 ];
 
 // ============================================================
-// КОРЗИНА (localStorage) — с количеством
+// КОРЗИНА (localStorage)
 // ============================================================
 function getCart() {
     try {
@@ -368,7 +369,7 @@ function updateQuantity(productId, delta) {
 }
 
 // ============================================================
-// ОБРАБОТКА КНОПОК "В КОРЗИНУ"
+// КНОПКИ "В КОРЗИНУ"
 // ============================================================
 document.querySelectorAll('.add-to-cart').forEach(btn => {
     btn.addEventListener('click', function() {
@@ -408,7 +409,7 @@ if (productContainer) {
 }
 
 // ============================================================
-// СТРАНИЦА КОРЗИНЫ — с количеством
+// СТРАНИЦА КОРЗИНЫ
 // ============================================================
 const cartContainer = document.getElementById('cartContainer');
 if (cartContainer) {
@@ -466,7 +467,7 @@ if (cartContainer) {
                 <span>${total.toLocaleString('ru-RU')} ₽</span>
             </div>
             <div style="text-align:center; margin-top:24px;">
-                <a href="index.html#contacts" class="btn btn-primary btn-large">Оформить заказ</a>
+                <button class="btn btn-primary btn-large" id="checkoutBtn">Оформить заказ</button>
             </div>
         `;
 
@@ -493,6 +494,18 @@ if (cartContainer) {
                 renderCart();
             });
         });
+
+        const checkoutBtn = document.getElementById('checkoutBtn');
+            if (checkoutBtn) {
+                checkoutBtn.addEventListener('click', () => {
+                    const cart = getCart();
+                    if (Object.keys(cart).length === 0) {
+                        showToast('Корзина пуста', 'error');
+                        return;
+                    }
+                    window.location.href = 'checkout.html';
+                });
+            }
     }
 }
 
@@ -538,7 +551,7 @@ if (filterButtons.length > 0) {
 }
 
 // ============================================================
-// ПЕРЕКЛЮЧЕНИЕ РЕГИСТРАЦИЯ / ВХОД
+// РЕГИСТРАЦИЯ / ВХОД
 // ============================================================
 const authTitle = document.getElementById('authTitle');
 const authSubtitle = document.getElementById('authSubtitle');
@@ -568,7 +581,7 @@ if (registerForm && loginForm) {
         });
     }
 
-    registerForm.addEventListener('submit', function(e) {
+    registerForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         const name = document.getElementById('regName').value.trim();
         const email = document.getElementById('regEmail').value.trim();
@@ -580,11 +593,35 @@ if (registerForm && loginForm) {
             return;
         }
 
-        showToast(`Спасибо, ${name}! Регистрация прошла успешно (демо-режим).`, 'success');
-        registerForm.reset();
+        try {
+            const res = await fetch('/api/auth/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, phone, password })
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(data.error || 'Ошибка регистрации');
+            }
+
+            localStorage.setItem('vega_token', data.token);
+            localStorage.setItem('vega_user', JSON.stringify(data.user));
+
+            showToast(`Спасибо, ${data.user.name}! Регистрация прошла успешно.`, 'success');
+            registerForm.reset();
+
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1500);
+        } catch (err) {
+            console.error('Ошибка регистрации:', err);
+            showToast(err.message || 'Не удалось зарегистрироваться', 'error');
+        }
     });
 
-    loginForm.addEventListener('submit', function(e) {
+    loginForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         const email = document.getElementById('loginEmail').value.trim();
         const password = document.getElementById('loginPassword').value.trim();
@@ -594,13 +631,120 @@ if (registerForm && loginForm) {
             return;
         }
 
-        showToast('Добро пожаловать! (демо-режим)', 'success');
-        loginForm.reset();
+        try {
+            const res = await fetch('/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(data.error || 'Ошибка входа');
+            }
+
+            localStorage.setItem('vega_token', data.token);
+            localStorage.setItem('vega_user', JSON.stringify(data.user));
+
+            showToast(`Добро пожаловать, ${data.user.name}!`, 'success');
+            loginForm.reset();
+
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1500);
+        } catch (err) {
+            console.error('Ошибка входа:', err);
+            showToast(err.message || 'Не удалось войти', 'error');
+        }
     });
 }
 
 // ============================================================
-// 3D-TILT НА КАРТОЧКАХ (исправленный — мягче)
+// АККАУНТ В ШАПКЕ — выпадашка и выход
+// ============================================================
+function updateAuthUI() {
+    const headerUser = document.getElementById('headerUser');
+    const loginBtn = document.getElementById('loginBtn');
+    const dropdown = document.getElementById('userDropdown');
+    const dropdownName = document.getElementById('dropdownName');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const logoutConfirm = document.getElementById('logoutConfirm');
+    const logoutCancel = document.getElementById('logoutCancel');
+    const logoutConfirmBtn = document.getElementById('logoutConfirmBtn');
+
+    if (!headerUser || !loginBtn || !dropdown) return;
+
+    const token = localStorage.getItem('vega_token');
+    const userRaw = localStorage.getItem('vega_user');
+
+    if (token && userRaw) {
+        const user = JSON.parse(userRaw);
+
+        loginBtn.textContent = user.name;
+        loginBtn.href = '#';
+        loginBtn.style.padding = '8px 18px';
+        loginBtn.style.background = 'rgba(250,85,63,0.12)';
+        loginBtn.style.borderColor = 'transparent';
+        loginBtn.style.color = '#fa553f';
+        loginBtn.style.fontWeight = '600';
+
+        if (dropdownName) dropdownName.textContent = user.name;
+
+        loginBtn.onclick = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropdown.classList.toggle('active');
+        };
+
+        document.addEventListener('click', function closeDropdown(e) {
+            if (!headerUser.contains(e.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        if (logoutBtn) {
+            logoutBtn.onclick = (e) => {
+                e.preventDefault();
+                dropdown.classList.remove('active');
+                if (logoutConfirm) logoutConfirm.classList.add('active');
+            };
+        }
+
+        if (logoutConfirmBtn) {
+            logoutConfirmBtn.onclick = () => {
+                localStorage.removeItem('vega_token');
+                localStorage.removeItem('vega_user');
+                logoutConfirm.classList.remove('active');
+                showToast('Вы вышли из аккаунта', 'info');
+                setTimeout(() => window.location.reload(), 800);
+            };
+        }
+
+        if (logoutCancel) {
+            logoutCancel.onclick = () => {
+                logoutConfirm.classList.remove('active');
+            };
+        }
+
+        if (logoutConfirm) {
+            logoutConfirm.addEventListener('click', (e) => {
+                if (e.target === logoutConfirm) {
+                    logoutConfirm.classList.remove('active');
+                }
+            });
+        }
+
+    } else {
+        loginBtn.textContent = 'Войти';
+        loginBtn.href = 'register.html';
+        loginBtn.style.cssText = '';
+        loginBtn.onclick = null;
+    }
+}
+
+// ============================================================
+// 3D-TILT НА КАРТОЧКАХ
 // ============================================================
 function initTilt() {
     const cards = document.querySelectorAll('.product-card, .catalog-preview__item');
@@ -632,12 +776,117 @@ if (scrollProgress) {
         scrollProgress.style.width = progress + '%';
     });
 }
-
 // ============================================================
-// ИНИЦИАЛИЗАЦИЯ (всё в одном месте)
+// СТРАНИЦА ОФОРМЛЕНИЯ ЗАКАЗА
+// ============================================================
+const checkoutForm = document.getElementById('checkoutForm');
+const checkoutItems = document.getElementById('checkoutItems');
+const checkoutTotal = document.getElementById('checkoutTotal');
+
+if (checkoutForm && checkoutItems) {
+    const cart = getCart();
+    const items = Object.entries(cart);
+
+    if (items.length === 0) {
+        window.location.href = 'cart.html';
+    }
+
+    const userRaw = localStorage.getItem('vega_user');
+    if (userRaw) {
+        const user = JSON.parse(userRaw);
+        if (user.name) document.getElementById('checkoutName').value = user.name;
+        if (user.phone) document.getElementById('checkoutPhone').value = user.phone;
+        if (user.email) document.getElementById('checkoutEmail').value = user.email;
+    }
+
+    let total = 0;
+    let html = '';
+
+    items.forEach(([id, qty]) => {
+        const product = PRODUCTS.find(p => p.id == id);
+        if (!product) return;
+
+        const itemTotal = product.price * qty;
+        total += itemTotal;
+
+        html += `
+            <div class="checkout-item">
+                <span class="checkout-item__name">${product.name}</span>
+                <span class="checkout-item__qty">× ${qty}</span>
+                <span class="checkout-item__price">${itemTotal > 0 ? itemTotal.toLocaleString('ru-RU') + ' ₽' : '—'}</span>
+            </div>
+        `;
+    });
+
+    checkoutItems.innerHTML = html;
+    checkoutTotal.innerHTML = `
+        <span>Итого:</span>
+        <span>${total.toLocaleString('ru-RU')} ₽</span>
+    `;
+
+    checkoutForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('checkoutName').value.trim();
+        const phone = document.getElementById('checkoutPhone').value.trim();
+        const email = document.getElementById('checkoutEmail').value.trim();
+        const address = document.getElementById('checkoutAddress').value.trim();
+        const comment = document.getElementById('checkoutComment').value.trim();
+
+        if (!name || !phone) {
+            showToast('Заполните имя и телефон', 'error');
+            return;
+        }
+
+        const orderItems = items.map(([id, qty]) => ({
+            product_id: parseInt(id),
+            qty: qty
+        }));
+
+        const token = localStorage.getItem('vega_token');
+        const headers = { 'Content-Type': 'application/json' };
+        if (token) headers['Authorization'] = 'Bearer ' + token;
+
+        try {
+            const res = await fetch('/api/orders', {
+                method: 'POST',
+                headers,
+                body: JSON.stringify({
+                    name,
+                    phone,
+                    email: email || null,
+                    address: address || null,
+                    comment: comment || null,
+                    items: orderItems
+                })
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                throw new Error(data.error || 'Ошибка оформления заказа');
+            }
+
+            localStorage.removeItem('vega_cart');
+            updateCartCount();
+
+            showToast('Заказ оформлен! Мы свяжемся с вами.', 'success');
+
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
+        } catch (err) {
+            console.error('Ошибка заказа:', err);
+            showToast(err.message || 'Не удалось оформить заказ', 'error');
+        }
+    });
+}
+// ============================================================
+// ИНИЦИАЛИЗАЦИЯ
 // ============================================================
 document.addEventListener('DOMContentLoaded', function() {
     updateCartCount();
+    updateAuthUI();
     initGallery('galleryTrack', 'galleryPrev', 'galleryNext', 'galleryDots');
     initGallery('historyGalleryTrack', 'historyGalleryPrev', 'historyGalleryNext', 'historyGalleryDots');
     initTilt();

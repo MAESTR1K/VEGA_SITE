@@ -17,15 +17,32 @@
                 <img src="фото/logo/logo.png.webp" alt="logo">
                 <span class="logo__text">VEGA <span class="logo__accent">PPF</span></span>
             </a>
+
             <nav class="nav" id="mobileNav">
-                <a href="index.html">Главная</a>
-                <a href="catalog.html">Каталог</a>
-                <a href="cart.html">Корзина</a>
+                <nav class="nav" id="mobileNav">
+                    <a href="index.html">Главная</a>
+                    <a href="catalog.html">Каталог</a>
+                    <a href="cart.html">Корзина</a>
+                </nav>
             </nav>
+
             <a href="cart.html" class="header__cart">
                 <i class="fas fa-shopping-cart"></i>
                 <span class="cart-count" id="cartCount">0</span>
             </a>
+
+            <div class="header__user" id="headerUser">
+                <a href="register.html" class="header__login" id="loginBtn">Войти</a>
+                <div class="header__dropdown" id="userDropdown">
+                    <div class="header__dropdown-name" id="dropdownName">Пользователь</div>
+                    <a href="#" class="header__dropdown-item" id="profileLink">Профиль</a>
+                    <a href="cart.html" class="header__dropdown-item">Мои заказы</a>
+                    <button class="header__dropdown-item header__dropdown-item--logout" id="logoutBtn">Выйти</button>
+                </div>
+            </div>
+
+            <a href="tel:+78005550027" class="header__phone">8 (800) 555-00-27</a>
+
             <button class="burger" id="burgerBtn" aria-label="Меню">
                 <span></span><span></span><span></span>
             </button>
@@ -97,6 +114,17 @@
             </div>
         </div>
     </footer>
+    <!-- МОДАЛКА ПОДТВЕРЖДЕНИЯ ВЫХОДА -->
+    <div class="confirm-overlay" id="logoutConfirm">
+        <div class="confirm-box">
+            <h3 class="confirm-box__title">Выйти из аккаунта?</h3>
+            <p class="confirm-box__text">Вы сможете войти снова в любой момент.</p>
+            <div class="confirm-box__actions">
+                <button class="btn btn-outline" id="logoutCancel">Отмена</button>
+                <button class="btn btn-primary" id="logoutConfirmBtn">Выйти</button>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

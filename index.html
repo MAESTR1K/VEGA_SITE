@@ -13,34 +13,46 @@
     <div class="scroll-progress" id="scrollProgress"></div>
     <!-- ШАПКА -->
     <header class="header">
-    <div class="container header__inner">
-        <div class="logo">
-            <img src="фото/logo/logo.png.webp" alt="logo">
-            <span class="logo__text">VEGA <span class="logo__accent">PPF</span></span>
+        <div class="container header__inner">
+            <a href="index.html" class="logo">
+                <img src="фото/logo/logo.png.webp" alt="logo">
+                <span class="logo__text">VEGA <span class="logo__accent">PPF</span></span>
+            </a>
+
+            <nav class="nav" id="mobileNav">
+                <nav class="nav" id="mobileNav">
+                    <a href="#configurator">3D-конфигуратор</a>
+                    <a href="#about">О бренде</a>
+                    <a href="#steps">Как работаем</a>
+                    <a href="#school">Школа VEGA</a>
+                    <a href="#blog">Блог</a>
+                    <a href="#products">Каталог</a>
+                    <a href="#contacts">Контакты</a>
+                </nav>
+            </nav>
+
+            <a href="cart.html" class="header__cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </a>
+
+            <div class="header__user" id="headerUser">
+                <a href="register.html" class="header__login" id="loginBtn">Войти</a>
+                <div class="header__dropdown" id="userDropdown">
+                    <div class="header__dropdown-name" id="dropdownName">Пользователь</div>
+                    <a href="#" class="header__dropdown-item" id="profileLink">Профиль</a>
+                    <a href="cart.html" class="header__dropdown-item">Мои заказы</a>
+                    <button class="header__dropdown-item header__dropdown-item--logout" id="logoutBtn">Выйти</button>
+                </div>
+            </div>
+
+            <a href="tel:+78005550027" class="header__phone">8 (800) 555-00-27</a>
+
+            <button class="burger" id="burgerBtn" aria-label="Меню">
+                <span></span><span></span><span></span>
+            </button>
         </div>
-
-        <nav class="nav" id="mobileNav">
-            <a href="#configurator">3D-конфигуратор</a>
-            <a href="#about">О бренде</a>
-            <a href="#steps">Как работаем</a>
-            <a href="#school">Школа VEGA</a>
-            <a href="#blog">Блог</a>
-            <a href="#products">Каталог</a>
-            <a href="#contacts">Контакты</a>
-        </nav>
-        <a href="cart.html" class="header__cart">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="cart-count" id="cartCount">0</span>
-        </a>
-        <a href="register.html" class="header__login">Войти</a>
-
-        <a href="tel:+78005550027" class="header__phone">8 (800) 555-00-27</a>
-
-        <button class="burger" id="burgerBtn" aria-label="Меню">
-            <span></span><span></span><span></span>
-        </button>
-    </div>
-</header>
+    </header>
 
     <!-- ГЛАВНЫЙ ЭКРАН -->
     <section class="hero">
@@ -148,20 +160,6 @@
                 <p><strong>VEGA Paint Protection Film</strong> — это российский амбициозный бренд, который с самого начала поставил перед собой цель — обеспечить рынок антигравийных плёнок продуктом, максимально точно подобранным под конкретный автомобиль и условия его эксплуатации.</p>
                 <p>Бренд был создан командой экспертов, глубоко понимающих потребности автовладельцев и специфику защиты лакокрасочного покрытия. Основная миссия VEGA PPF — предложить клиентам не просто плёнку, а индивидуальное решение, которое учитывает особенности каждого автомобиля.</p>
                 <p>Официальная регистрация торговой марки <strong>«ВЕГА — VEGA»</strong> состоялась в <strong>2020 году</strong>. С тех пор бренд непрерывно развивается, расширяет ассортимент и внедряет инновации, оставаясь верным своему главному принципу: предлагать защиту, которой можно доверять.</p>
-                <div class="history__milestones">
-                    <div class="history__milestone">
-                        <span class="year">2019</span>
-                        <p>Подана заявка на регистрацию торговой марки VEGA</p>
-                    </div>
-                    <div class="history__milestone">
-                        <span class="year">2020</span>
-                        <p>Официальная регистрация бренда «ВЕГА — VEGA»</p>
-                    </div>
-                    <div class="history__milestone">
-                        <span class="year">Сегодня</span>
-                        <p>Широкий ассортимент плёнок для любых задач и автомобилей</p>
-                    </div>
-                </div>
             </div>
             <div class="history__image">
                 <div class="gallery gallery--history">
@@ -261,7 +259,6 @@
                     <div class="school__image-placeholder">
                         <!-- СЮДА ВСТАВИШЬ ФОТО -->
                         <img src="фото/school/placeholder.jpg" alt="Школа оклейки VEGA PPF">
-                        <div class="school__image-badge">Обучили 200+ мастеров</div>
                     </div>
                 </div>
             </div>
@@ -593,6 +590,17 @@
             </div>
         </div>
     </footer>
+    <!-- МОДАЛКА ПОДТВЕРЖДЕНИЯ ВЫХОДА -->
+    <div class="confirm-overlay" id="logoutConfirm">
+        <div class="confirm-box">
+            <h3 class="confirm-box__title">Выйти из аккаунта?</h3>
+            <p class="confirm-box__text">Вы сможете войти снова в любой момент.</p>
+            <div class="confirm-box__actions">
+                <button class="btn btn-outline" id="logoutCancel">Отмена</button>
+                <button class="btn btn-primary" id="logoutConfirmBtn">Выйти</button>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

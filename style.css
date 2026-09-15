@@ -1403,3 +1403,225 @@ main, section, .auth-page, .cart-page, .product-page {
     transition: width 0.1s ease;
     box-shadow: 0 0 10px rgba(250, 85, 63, 0.5);
 }
+
+
+/* ============================================================
+   АККАУНТ В ШАПКЕ
+   ============================================================ */
+.header__user {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.header__dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.2);
+    min-width: 220px;
+    padding: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.25s ease;
+    z-index: 1200;
+    border: 1px solid rgba(0,0,0,0.06);
+}
+
+.header__dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.header__dropdown-name {
+    font-size: 0.85rem;
+    color: #999;
+    padding: 10px 16px 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.header__dropdown-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 10px 16px;
+    color: #2d2d2d;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    background: none;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.header__dropdown-item:hover {
+    background: #f7f7f7;
+    color: #fa553f;
+}
+
+.header__dropdown-item--logout {
+    color: #fa553f;
+    border-top: 1px solid #f0f0f0;
+    margin-top: 6px;
+    padding-top: 12px;
+    border-radius: 0 0 10px 10px;
+}
+
+.header__dropdown-item--logout:hover {
+    background: #fff3f0;
+}
+
+/* Мобильная версия выпадашки */
+@media (max-width: 768px) {
+    .header__dropdown {
+        right: 0;
+        min-width: 200px;
+    }
+}
+
+/* ============================================================
+   МОДАЛКА ПОДТВЕРЖДЕНИЯ ВЫХОДА
+   ============================================================ */
+.confirm-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 3000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.confirm-overlay.active {
+    display: flex;
+}
+
+.confirm-box {
+    background: #fff;
+    border-radius: 24px;
+    padding: 40px 32px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+    animation: confirmFade 0.25s ease;
+}
+
+@keyframes confirmFade {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.confirm-box__icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.confirm-box__title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin-bottom: 8px;
+}
+
+.confirm-box__text {
+    font-size: 0.95rem;
+    color: #888;
+    margin-bottom: 28px;
+    line-height: 1.5;
+}
+
+.confirm-box__actions {
+    display: flex;
+    gap: 12px;
+}
+
+.confirm-box__actions .btn {
+    flex: 1;
+    padding: 14px 20px;
+    font-size: 0.95rem;
+}
+
+
+/* ============================================================
+   ОФОРМЛЕНИЕ ЗАКАЗА (CHECKOUT)
+   ============================================================ */
+.checkout__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.checkout__summary {
+    background: #fff;
+    padding: 32px;
+    border-radius: 20px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.checkout__summary h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #2d2d2d;
+}
+
+.checkout-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.95rem;
+}
+
+.checkout-item:last-of-type {
+    border-bottom: none;
+}
+
+.checkout-item__name {
+    color: #2d2d2d;
+    font-weight: 500;
+    flex: 1;
+    margin-right: 12px;
+}
+
+.checkout-item__qty {
+    color: #888;
+    margin-right: 12px;
+}
+
+.checkout-item__price {
+    color: #fa553f;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .checkout__grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    .checkout__summary {
+        padding: 24px 20px;
+    }
+}
