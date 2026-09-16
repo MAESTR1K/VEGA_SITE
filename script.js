@@ -280,33 +280,76 @@ function initGallery(trackId, prevId, nextId, dotsId) {
 // ============================================================
 // ДАННЫЕ ТОВАРОВ
 // ============================================================
-const PRODUCTS = [
-    { id: 1, name: 'VEGA® PREMIUM 190 ST', price: 66000, img: 'фото/plenki/190prem.jpg', desc: 'Глянцевая плёнка для тёмных авто. Толщина 190 мкм.' },
-    { id: 2, name: 'VEGA® PREMIUM 230 ST', price: 83000, img: 'фото/plenki/230prem.jpg', desc: 'Глянцевая плёнка для тёмных авто. Толщина 230 мкм.' },
-    { id: 3, name: 'VEGA® PREMIUM 290 ST', price: 129000, img: 'фото/plenki/290prem.jpg', desc: 'Глянцевая плёнка для тёмных авто. Толщина 290 мкм.' },
-    { id: 4, name: 'VEGA® PREMIUM 350 HT', price: 190000, img: 'фото/plenki/350prem.jpg', desc: 'Сверхпрочная глянцевая плёнка. Толщина 350 мкм.' },
-    { id: 5, name: 'VEGA® PREMIUM 190 HT 1.82', price: 110000, img: 'фото/plenki/190_182gloss.jpg', desc: 'Глянцевая плёнка шириной 1.82 м.' },
-    { id: 6, name: 'VEGA® ULTIMA GLOSS 200', price: 65000, img: 'фото/plenki/ultima200.png', desc: 'Глянцевая плёнка для светлых авто. Толщина 200 мкм.' },
-    { id: 7, name: 'VEGA® ULTIMA GLOSS 215', price: 70000, img: 'фото/plenki/ultima215.png', desc: 'Глянцевая плёнка для светлых авто. Толщина 215 мкм.' },
-    { id: 8, name: 'VEGA® PREMIUM 190 MATTE HT', price: 74000, img: 'фото/plenki/matt190.jpg', desc: 'Матовая плёнка, высокая термостойкость. 190 мкм.' },
-    { id: 9, name: 'VEGA® PREMIUM 190 SATIN HT', price: 74000, img: 'фото/plenki/satin190.jpg', desc: 'Сатиновая плёнка, уникальный блеск. 190 мкм.' },
-    { id: 10, name: 'VEGA® 190 SATIN PRO', price: 54000, img: 'фото/plenki/satin_pro190.jpeg', desc: 'Сатиновая плёнка Pro-серии. 190 мкм.' },
-    { id: 11, name: 'VEGA® 190 ST PRO', price: 46000, img: 'фото/plenki/pro190.jpg', desc: 'Глянцевая плёнка Pro-серии для тёмных авто.' },
-    { id: 12, name: 'VEGA® 190 HT PRO', price: 46000, img: 'фото/plenki/ht_pro190.jpg', desc: 'Глянцевая плёнка Pro-серии для светлых авто.' },
-    { id: 13, name: 'VEGA® COLOR PPF PREMIUM', price: 0, img: 'фото/plenki/color_ppf.jpg', desc: 'Цветная плёнка. Более 60 оттенков. 200 мкм.' },
-    { id: 14, name: 'VEGA® COLOR PPF', price: 0, img: 'фото/plenki/red_color_ppf.jpg', desc: 'Цветная полиуретановая плёнка. Более 70 оттенков.' },
-    { id: 15, name: 'VEGA® ULTIMA COLOR PPF', price: 0, img: 'фото/plenki/ultima_color_ppf.png', desc: 'Цветная плёнка премиум-класса. Более 80 цветов.' },
-    { id: 16, name: 'Образцы VEGA® COLOR PREMIUM', price: 0, img: 'фото/plenki/veer_color_prem.jpg', desc: 'Веер с образцами цветов премиальной линейки.' },
-    { id: 17, name: 'Образцы VEGA® COLOR', price: 0, img: 'фото/plenki/color.png', desc: 'Веер с образцами цветов. Более 60 вариантов.' },
-    { id: 18, name: 'Установочный концентрат', price: 800, img: 'фото/accsesuar/ust_konc.jpg', desc: 'Для приготовления рабочего раствора при установке плёнок.' },
-    { id: 19, name: 'Установочный гель', price: 800, img: 'фото/accsesuar/gel.jpg', desc: 'Для быстрой локальной адгезии при оклейке сложных деталей.' },
-    { id: 20, name: 'Ракель VEGA', price: 500, img: 'фото/accsesuar/rakel.jpg', desc: 'Для удаления влаги из-под плёнки при установке.' },
-    { id: 21, name: 'Лопатка VEGA', price: 0, img: 'фото/accsesuar/lopata.jpg', desc: 'Для точечной работы с плёнкой на углах.' },
-    { id: 22, name: 'Футболка бежевая', price: 5000, img: 'фото/merch/bej.jpg', desc: 'Фирменная футболка VEGA. Цвет: бежевый.' },
-    { id: 23, name: 'Футболка зелёная', price: 5000, img: 'фото/merch/green.jpg', desc: 'Фирменная футболка VEGA. Цвет: зелёный.' },
-    { id: 24, name: 'Футболка красная', price: 5000, img: 'фото/merch/red.jpg', desc: 'Фирменная футболка VEGA. Цвет: красный.' },
-    { id: 25, name: 'Футболка серая', price: 5000, img: 'фото/merch/grey.jpg', desc: 'Фирменная футболка VEGA. Цвет: серый.' },
-];
+// const PRODUCTS = [
+//     { id: 1, name: 'VEGA® PREMIUM 190 ST', price: 66000, img: 'фото/plenki/190prem.jpg', desc: 'Глянцевая плёнка для тёмных авто. Толщина 190 мкм.' },
+//     { id: 2, name: 'VEGA® PREMIUM 230 ST', price: 83000, img: 'фото/plenki/230prem.jpg', desc: 'Глянцевая плёнка для тёмных авто. Толщина 230 мкм.' },
+//     { id: 3, name: 'VEGA® PREMIUM 290 ST', price: 129000, img: 'фото/plenki/290prem.jpg', desc: 'Глянцевая плёнка для тёмных авто. Толщина 290 мкм.' },
+//     { id: 4, name: 'VEGA® PREMIUM 350 HT', price: 190000, img: 'фото/plenki/350prem.jpg', desc: 'Сверхпрочная глянцевая плёнка. Толщина 350 мкм.' },
+//     { id: 5, name: 'VEGA® PREMIUM 190 HT 1.82', price: 110000, img: 'фото/plenki/190_182gloss.jpg', desc: 'Глянцевая плёнка шириной 1.82 м.' },
+//     { id: 6, name: 'VEGA® ULTIMA GLOSS 200', price: 65000, img: 'фото/plenki/ultima200.png', desc: 'Глянцевая плёнка для светлых авто. Толщина 200 мкм.' },
+//     { id: 7, name: 'VEGA® ULTIMA GLOSS 215', price: 70000, img: 'фото/plenki/ultima215.png', desc: 'Глянцевая плёнка для светлых авто. Толщина 215 мкм.' },
+//     { id: 8, name: 'VEGA® PREMIUM 190 MATTE HT', price: 74000, img: 'фото/plenki/matt190.jpg', desc: 'Матовая плёнка, высокая термостойкость. 190 мкм.' },
+//     { id: 9, name: 'VEGA® PREMIUM 190 SATIN HT', price: 74000, img: 'фото/plenki/satin190.jpg', desc: 'Сатиновая плёнка, уникальный блеск. 190 мкм.' },
+//     { id: 10, name: 'VEGA® 190 SATIN PRO', price: 54000, img: 'фото/plenki/satin_pro190.jpeg', desc: 'Сатиновая плёнка Pro-серии. 190 мкм.' },
+//     { id: 11, name: 'VEGA® 190 ST PRO', price: 46000, img: 'фото/plenki/pro190.jpg', desc: 'Глянцевая плёнка Pro-серии для тёмных авто.' },
+//     { id: 12, name: 'VEGA® 190 HT PRO', price: 46000, img: 'фото/plenki/ht_pro190.jpg', desc: 'Глянцевая плёнка Pro-серии для светлых авто.' },
+//     { id: 13, name: 'VEGA® COLOR PPF PREMIUM', price: 0, img: 'фото/plenki/color_ppf.jpg', desc: 'Цветная плёнка. Более 60 оттенков. 200 мкм.' },
+//     { id: 14, name: 'VEGA® COLOR PPF', price: 0, img: 'фото/plenki/red_color_ppf.jpg', desc: 'Цветная полиуретановая плёнка. Более 70 оттенков.' },
+//     { id: 15, name: 'VEGA® ULTIMA COLOR PPF', price: 0, img: 'фото/plenki/ultima_color_ppf.png', desc: 'Цветная плёнка премиум-класса. Более 80 цветов.' },
+//     { id: 16, name: 'Образцы VEGA® COLOR PREMIUM', price: 0, img: 'фото/plenki/veer_color_prem.jpg', desc: 'Веер с образцами цветов премиальной линейки.' },
+//     { id: 17, name: 'Образцы VEGA® COLOR', price: 0, img: 'фото/plenki/color.png', desc: 'Веер с образцами цветов. Более 60 вариантов.' },
+//     { id: 18, name: 'Установочный концентрат', price: 800, img: 'фото/accsesuar/ust_konc.jpg', desc: 'Для приготовления рабочего раствора при установке плёнок.' },
+//     { id: 19, name: 'Установочный гель', price: 800, img: 'фото/accsesuar/gel.jpg', desc: 'Для быстрой локальной адгезии при оклейке сложных деталей.' },
+//     { id: 20, name: 'Ракель VEGA', price: 500, img: 'фото/accsesuar/rakel.jpg', desc: 'Для удаления влаги из-под плёнки при установке.' },
+//     { id: 21, name: 'Лопатка VEGA', price: 0, img: 'фото/accsesuar/lopata.jpg', desc: 'Для точечной работы с плёнкой на углах.' },
+//     { id: 22, name: 'Футболка бежевая', price: 5000, img: 'фото/merch/bej.jpg', desc: 'Фирменная футболка VEGA. Цвет: бежевый.' },
+//     { id: 23, name: 'Футболка зелёная', price: 5000, img: 'фото/merch/green.jpg', desc: 'Фирменная футболка VEGA. Цвет: зелёный.' },
+//     { id: 24, name: 'Футболка красная', price: 5000, img: 'фото/merch/red.jpg', desc: 'Фирменная футболка VEGA. Цвет: красный.' },
+//     { id: 25, name: 'Футболка серая', price: 5000, img: 'фото/merch/grey.jpg', desc: 'Фирменная футболка VEGA. Цвет: серый.' },
+// ];
+// ============================================================
+// ЗАГРУЗКА ТОВАРОВ ИЗ API
+// ============================================================
+let PRODUCTS = [];
+let productsLoaded = false;
+let productsLoadingPromise = null;
+
+async function loadProductsFromAPI() {
+    if (productsLoaded) return PRODUCTS;
+    if (productsLoadingPromise) return productsLoadingPromise;
+
+    productsLoadingPromise = (async () => {
+        try {
+            const res = await fetch('/api/products');
+            if (!res.ok) throw new Error('Ошибка загрузки товаров');
+            const data = await res.json();
+
+            PRODUCTS = data.map(p => ({
+                id: p.id,
+                name: p.name,
+                price: p.price,
+                img: p.img,
+                desc: p.description,
+                category: p.category
+            }));
+
+            productsLoaded = true;
+            console.log(`✅ Загружено ${PRODUCTS.length} товаров из API`);
+            return PRODUCTS;
+        } catch (err) {
+            console.error('❌ Не удалось загрузить товары:', err);
+            // Фолбэк — пустой массив
+            PRODUCTS = [];
+            productsLoaded = true;
+            return PRODUCTS;
+        }
+    })();
+
+    return productsLoadingPromise;
+}
+
+// Автозагрузка при старте
+loadProductsFromAPI();
 
 // ============================================================
 // КОРЗИНА (localStorage)
@@ -382,30 +425,128 @@ document.querySelectorAll('.add-to-cart').forEach(btn => {
 // ============================================================
 const productContainer = document.getElementById('productContainer');
 if (productContainer) {
-    const id = new URLSearchParams(window.location.search).get('id');
-    const product = PRODUCTS.find(p => p.id == id);
+    productContainer.innerHTML = '<div style="text-align:center; padding:60px; color:#888;">Загрузка товара...</div>';
 
-    if (product) {
-        productContainer.innerHTML = `
-            <div class="product-page__image">
-                <img src="${product.img}" alt="${product.name}">
-            </div>
-            <div class="product-page__info">
-                <h1>${product.name}</h1>
-                <div class="product-page__price">${product.price > 0 ? product.price.toLocaleString('ru-RU') + ' ₽' : 'Цена по запросу'}</div>
-                <p class="product-page__desc">${product.desc}</p>
-                <div class="product-page__actions">
-                    <button class="btn btn-primary add-to-cart" data-id="${product.id}">Добавить в корзину</button>
-                    <a href="catalog.html" class="btn btn-outline">← Вернуться в каталог</a>
+    (async () => {
+        await loadProductsFromAPI();
+
+        const id = new URLSearchParams(window.location.search).get('id');
+        const product = PRODUCTS.find(p => p.id == id);
+
+        if (product) {
+            productContainer.innerHTML = `
+                <div class="product-page__image">
+                    <img src="${product.img}" alt="${product.name}">
                 </div>
-            </div>
-        `;
-        productContainer.querySelector('.add-to-cart').addEventListener('click', function() {
-            addToCart(this.dataset.id);
+                <div class="product-page__info">
+                    <h1>${product.name}</h1>
+                    <div class="product-page__price">${product.price > 0 ? product.price.toLocaleString('ru-RU') + ' ₽' : 'Цена по запросу'}</div>
+                    <p class="product-page__desc">${product.desc}</p>
+                    <div class="product-page__actions">
+                        <button class="btn btn-primary add-to-cart" data-id="${product.id}">Добавить в корзину</button>
+                        <a href="catalog.html" class="btn btn-outline">← Вернуться в каталог</a>
+                    </div>
+                </div>
+            `;
+            productContainer.querySelector('.add-to-cart').addEventListener('click', function() {
+                addToCart(this.dataset.id);
+            });
+        } else {
+            productContainer.innerHTML = '<p style="text-align:center; padding:60px;">Товар не найден</p>';
+        }
+    })();
+}
+// ============================================================
+// КАТАЛОГ — РЕНДЕР ИЗ API
+// ============================================================
+const catalogContainer = document.getElementById('catalogContainer');
+
+if (catalogContainer) {
+    let catalogProducts = [];
+
+    const CATEGORY_TITLES = {
+        films: 'Плёнки VEGA PPF',
+        accessories: 'Аксессуары и химия',
+        merch: 'Мерч VEGA'
+    };
+
+    const CATEGORY_ORDER = ['films', 'accessories', 'merch'];
+
+    function renderCatalog() {
+        if (catalogProducts.length === 0) {
+            catalogContainer.innerHTML = `
+                <div style="text-align:center; padding:60px; color:#888;">
+                    <p style="font-size:1.2rem;">Товаров пока нет</p>
+                </div>
+            `;
+            return;
+        }
+
+        // Группируем по категориям
+        const groups = {};
+
+        catalogProducts.forEach(p => {
+            const cat = p.category || 'other';
+            if (!groups[cat]) groups[cat] = [];
+            groups[cat].push(p);
         });
-    } else {
-        productContainer.innerHTML = '<p>Товар не найден</p>';
+
+        let html = '';
+
+        CATEGORY_ORDER.forEach(cat => {
+            if (!groups[cat] || groups[cat].length === 0) return;
+
+            html += `<h3 class="category-title" data-category="${cat}">${CATEGORY_TITLES[cat] || cat}</h3>`;
+            html += `<div class="products__grid" data-category="${cat}">`;
+
+            groups[cat].forEach(p => {
+                html += `
+                    <div class="product-card" data-id="${p.id}">
+                        <div class="product-card__image">
+                            <img src="${p.img}" alt="${escapeHtml(p.name)}">
+                        </div>
+                        <h3 class="product-card__title">${escapeHtml(p.name)}</h3>
+                        <p class="product-card__desc">${escapeHtml(p.desc || '')}</p>
+                        <div class="product-card__price">${p.price > 0 ? p.price.toLocaleString('ru-RU') + ' ₽' : 'Цена по запросу'}</div>
+                        <div class="product-card__actions">
+                            <a href="product.html?id=${p.id}" class="btn btn-outline btn-sm">Подробнее</a>
+                            <button class="btn btn-primary btn-sm add-to-cart" data-id="${p.id}">В корзину</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+        });
+
+        catalogContainer.innerHTML = html;
+
+        // Навешиваем обработчики на кнопки "В корзину"
+        catalogContainer.querySelectorAll('.add-to-cart').forEach(btn => {
+            btn.addEventListener('click', function() {
+                addToCart(this.dataset.id);
+            });
+        });
+
     }
+
+    // Хелпер — экранирование (если ещё нет)
+    function escapeHtml(str) {
+        if (str == null) return '';
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
+
+    // Загружаем товары и рендерим
+    (async () => {
+        await loadProductsFromAPI();
+        catalogProducts = PRODUCTS;
+        renderCatalog();
+    })();
 }
 
 // ============================================================
@@ -413,7 +554,10 @@ if (productContainer) {
 // ============================================================
 const cartContainer = document.getElementById('cartContainer');
 if (cartContainer) {
-    renderCart();
+    (async () => {
+        await loadProductsFromAPI();
+        renderCart();
+    })();
 
     function renderCart() {
         const cart = getCart();
@@ -512,11 +656,12 @@ if (cartContainer) {
 // ============================================================
 // ФИЛЬТР КАТАЛОГА
 // ============================================================
-const filterButtons = document.querySelectorAll('.filter-btn');
-const categoryTitles = document.querySelectorAll('.category-title');
-const productGrids = document.querySelectorAll('.products__grid[data-category]');
-
 function filterCatalog(category) {
+    // Берём элементы В МОМЕНТ вызова — они динамические
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const categoryTitles = document.querySelectorAll('.category-title');
+    const productGrids = document.querySelectorAll('.products__grid[data-category]');
+
     filterButtons.forEach(btn => {
         btn.classList.toggle('active', btn.dataset.category === category);
     });
@@ -538,17 +683,26 @@ function filterCatalog(category) {
     });
 }
 
-filterButtons.forEach(btn => {
-    btn.addEventListener('click', function() {
-        filterCatalog(this.dataset.category);
-    });
+// Обработчики на кнопки фильтра — вешаем ОДИН РАЗ на document
+// (делегирование, работает даже для динамических элементов)
+document.addEventListener('click', function(e) {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+
+    e.preventDefault();
+    filterCatalog(btn.dataset.category);
 });
 
-if (filterButtons.length > 0) {
-    const urlParams = new URLSearchParams(window.location.search);
-    const categoryFromUrl = urlParams.get('category') || 'all';
-    filterCatalog(categoryFromUrl);
-}
+// Применяем фильтр из URL при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    if (filterBtns.length > 0) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryFromUrl = urlParams.get('category') || 'all';
+        // Небольшая задержка — ждём, пока каталог отрисуется
+        setTimeout(() => filterCatalog(categoryFromUrl), 100);
+    }
+});
 
 // ============================================================
 // РЕГИСТРАЦИЯ / ВХОД
@@ -690,6 +844,15 @@ function updateAuthUI() {
         loginBtn.style.fontWeight = '600';
 
         if (dropdownName) dropdownName.textContent = user.name;
+        // Показываем пункт "Админка" только для админов
+        const adminLink = document.getElementById('adminLink');
+        if (adminLink) {
+            if (user.role === 'admin') {
+                adminLink.style.display = 'block';
+            } else {
+                adminLink.style.display = 'none';
+            }
+        }
 
         loginBtn.onclick = (e) => {
             e.preventDefault();
@@ -740,6 +903,8 @@ function updateAuthUI() {
         loginBtn.href = 'register.html';
         loginBtn.style.cssText = '';
         loginBtn.onclick = null;
+            const adminLink = document.getElementById('adminLink');
+        if (adminLink) adminLink.style.display = 'none';
     }
 }
 
@@ -776,6 +941,8 @@ if (scrollProgress) {
         scrollProgress.style.width = progress + '%';
     });
 }
+
+
 // ============================================================
 // СТРАНИЦА ОФОРМЛЕНИЯ ЗАКАЗА
 // ============================================================
@@ -784,102 +951,107 @@ const checkoutItems = document.getElementById('checkoutItems');
 const checkoutTotal = document.getElementById('checkoutTotal');
 
 if (checkoutForm && checkoutItems) {
-    const cart = getCart();
-    const items = Object.entries(cart);
+    (async () => {
+        await loadProductsFromAPI();
 
-    if (items.length === 0) {
-        window.location.href = 'cart.html';
-    }
+        const cart = getCart();
+        const items = Object.entries(cart);
 
-    const userRaw = localStorage.getItem('vega_user');
-    if (userRaw) {
-        const user = JSON.parse(userRaw);
-        if (user.name) document.getElementById('checkoutName').value = user.name;
-        if (user.phone) document.getElementById('checkoutPhone').value = user.phone;
-        if (user.email) document.getElementById('checkoutEmail').value = user.email;
-    }
-
-    let total = 0;
-    let html = '';
-
-    items.forEach(([id, qty]) => {
-        const product = PRODUCTS.find(p => p.id == id);
-        if (!product) return;
-
-        const itemTotal = product.price * qty;
-        total += itemTotal;
-
-        html += `
-            <div class="checkout-item">
-                <span class="checkout-item__name">${product.name}</span>
-                <span class="checkout-item__qty">× ${qty}</span>
-                <span class="checkout-item__price">${itemTotal > 0 ? itemTotal.toLocaleString('ru-RU') + ' ₽' : '—'}</span>
-            </div>
-        `;
-    });
-
-    checkoutItems.innerHTML = html;
-    checkoutTotal.innerHTML = `
-        <span>Итого:</span>
-        <span>${total.toLocaleString('ru-RU')} ₽</span>
-    `;
-
-    checkoutForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-
-        const name = document.getElementById('checkoutName').value.trim();
-        const phone = document.getElementById('checkoutPhone').value.trim();
-        const email = document.getElementById('checkoutEmail').value.trim();
-        const address = document.getElementById('checkoutAddress').value.trim();
-        const comment = document.getElementById('checkoutComment').value.trim();
-
-        if (!name || !phone) {
-            showToast('Заполните имя и телефон', 'error');
+        if (items.length === 0) {
+            window.location.href = 'cart.html';
             return;
         }
 
-        const orderItems = items.map(([id, qty]) => ({
-            product_id: parseInt(id),
-            qty: qty
-        }));
+        const userRaw = localStorage.getItem('vega_user');
+        if (userRaw) {
+            const user = JSON.parse(userRaw);
+            if (user.name) document.getElementById('checkoutName').value = user.name;
+            if (user.phone) document.getElementById('checkoutPhone').value = user.phone;
+            if (user.email) document.getElementById('checkoutEmail').value = user.email;
+        }
 
-        const token = localStorage.getItem('vega_token');
-        const headers = { 'Content-Type': 'application/json' };
-        if (token) headers['Authorization'] = 'Bearer ' + token;
+        let total = 0;
+        let html = '';
 
-        try {
-            const res = await fetch('/api/orders', {
-                method: 'POST',
-                headers,
-                body: JSON.stringify({
-                    name,
-                    phone,
-                    email: email || null,
-                    address: address || null,
-                    comment: comment || null,
-                    items: orderItems
-                })
-            });
+        items.forEach(([id, qty]) => {
+            const product = PRODUCTS.find(p => p.id == id);
+            if (!product) return;
 
-            const data = await res.json();
+            const itemTotal = product.price * qty;
+            total += itemTotal;
 
-            if (!res.ok) {
-                throw new Error(data.error || 'Ошибка оформления заказа');
+            html += `
+                <div class="checkout-item">
+                    <span class="checkout-item__name">${product.name}</span>
+                    <span class="checkout-item__qty">× ${qty}</span>
+                    <span class="checkout-item__price">${itemTotal > 0 ? itemTotal.toLocaleString('ru-RU') + ' ₽' : '—'}</span>
+                </div>
+            `;
+        });
+
+        checkoutItems.innerHTML = html;
+        checkoutTotal.innerHTML = `
+            <span>Итого:</span>
+            <span>${total.toLocaleString('ru-RU')} ₽</span>
+        `;
+
+        checkoutForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('checkoutName').value.trim();
+            const phone = document.getElementById('checkoutPhone').value.trim();
+            const email = document.getElementById('checkoutEmail').value.trim();
+            const address = document.getElementById('checkoutAddress').value.trim();
+            const comment = document.getElementById('checkoutComment').value.trim();
+
+            if (!name || !phone) {
+                showToast('Заполните имя и телефон', 'error');
+                return;
             }
 
-            localStorage.removeItem('vega_cart');
-            updateCartCount();
+            const orderItems = items.map(([id, qty]) => ({
+                product_id: parseInt(id),
+                qty: qty
+            }));
 
-            showToast('Заказ оформлен! Мы свяжемся с вами.', 'success');
+            const token = localStorage.getItem('vega_token');
+            const headers = { 'Content-Type': 'application/json' };
+            if (token) headers['Authorization'] = 'Bearer ' + token;
 
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 2000);
-        } catch (err) {
-            console.error('Ошибка заказа:', err);
-            showToast(err.message || 'Не удалось оформить заказ', 'error');
-        }
-    });
+            try {
+                const res = await fetch('/api/orders', {
+                    method: 'POST',
+                    headers,
+                    body: JSON.stringify({
+                        name,
+                        phone,
+                        email: email || null,
+                        address: address || null,
+                        comment: comment || null,
+                        items: orderItems
+                    })
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    throw new Error(data.error || 'Ошибка оформления заказа');
+                }
+
+                localStorage.removeItem('vega_cart');
+                updateCartCount();
+
+                showToast('Заказ оформлен! Мы свяжемся с вами.', 'success');
+
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            } catch (err) {
+                console.error('Ошибка заказа:', err);
+                showToast(err.message || 'Не удалось оформить заказ', 'error');
+            }
+        });
+    })();
 }
 // ============================================================
 // ИНИЦИАЛИЗАЦИЯ

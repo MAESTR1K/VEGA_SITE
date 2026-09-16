@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админка — VEGA PPF</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="../фото/logo/logo.png.webp" type="image/jpeg">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <header class="admin-header">
+        <div class="admin-header__inner">
+            <div class="admin-header__logo">
+                VEGA <span class="accent">PPF</span>
+                <span class="admin-header__badge">Admin</span>
+            </div>
+            <div class="admin-header__right">
+                <span class="admin-header__user" id="headerUser">—</span>
+                <button class="btn btn-outline btn-sm" id="logoutBtn">Выйти</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="admin-main">
+        <!-- СТАТИСТИКА -->
+        <div class="stats-grid" id="statsGrid">
+            <div class="stat-card stat-card--accent">
+                <div class="stat-card__label">Заказы</div>
+                <div class="stat-card__value" id="statOrdersTotal">—</div>
+                <div class="stat-card__sub">Новых: <span id="statOrdersNew">—</span></div>
+            </div>
+            <div class="stat-card stat-card--success">
+                <div class="stat-card__label">Выручка</div>
+                <div class="stat-card__value" id="statRevenue">—</div>
+                <div class="stat-card__sub">по всем заказам</div>
+            </div>
+            <div class="stat-card stat-card--warning">
+                <div class="stat-card__label">Заявки</div>
+                <div class="stat-card__value" id="statContactsTotal">—</div>
+                <div class="stat-card__sub">Новых: <span id="statContactsNew">—</span></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__label">Пользователи</div>
+                <div class="stat-card__value" id="statUsers">—</div>
+                <div class="stat-card__sub">зарегистрировано</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__label">Товары</div>
+                <div class="stat-card__value" id="statProducts">—</div>
+                <div class="stat-card__sub">в каталоге</div>
+            </div>
+        </div>
+        <!-- ТАБЫ -->
+        <div class="admin-tabs">
+            <button class="admin-tab active" data-tab="orders">
+                📦 Заказы
+                <span class="admin-tab__count" id="ordersCount">0</span>
+            </button>
+            <button class="admin-tab" data-tab="contacts">
+                ✉️ Заявки
+                <span class="admin-tab__count" id="contactsCount">0</span>
+            </button>
+            <button class="admin-tab" data-tab="products">
+                🛍️ Товары
+                <span class="admin-tab__count" id="productsCount">0</span>
+            </button>
+        </div>
+
+        <!-- ПАНЕЛЬ: ЗАКАЗЫ -->
+        <section class="admin-panel active" data-panel="orders">
+            <div class="admin-loading" id="ordersLoading">Загрузка заказов...</div>
+            <div class="admin-list" id="ordersList"></div>
+        </section>
+
+        <!-- ПАНЕЛЬ: ЗАЯВКИ -->
+        <section class="admin-panel" data-panel="contacts">
+            <div class="admin-loading" id="contactsLoading">Загрузка заявок...</div>
+            <div class="admin-list" id="contactsList"></div>
+        </section>
+
+        <!-- ПАНЕЛЬ: ТОВАРЫ -->
+        <section class="admin-panel" data-panel="products">
+            <div class="admin-actions-bar">
+                <div class="admin-actions-bar__title">Все товары</div>
+                <button class="btn btn-primary btn-sm" id="addProductBtn">+ Добавить товар</button>
+            </div>
+            <div class="admin-loading" id="productsLoading">Загрузка товаров...</div>
+            <div class="admin-list" id="productsList"></div>
+        </section>
+
+    </main>
+
+        <!-- МОДАЛКА: ДОБАВЛЕНИЕ/РЕДАКТИРОВАНИЕ ТОВАРА -->
+<div class="admin-modal-overlay" id="productModal">
+    <div class="admin-modal">
+        <button class="admin-modal__close" id="productModalClose">&times;</button>
+        <h2 class="admin-modal__title" id="productModalTitle">Добавить товар</h2>
+
+        <form id="productForm" class="admin-form">
+            <input type="hidden" id="productId">
+
+            <div class="form-group">
+                <label for="productName">Название *</label>
+                <input type="text" id="productName" placeholder="VEGA® PREMIUM 190 ST" required>
+            </div>
+
+            <div class="form-group">
+                <label for="productPrice">Цена, ₽</label>
+                <input type="number" id="productPrice" placeholder="66000" min="0" value="0">
+            </div>
+
+            <div class="form-group">
+                <label for="productImg">Путь к изображению</label>
+                <input type="text" id="productImg" placeholder="фото/plenki/190prem.jpg">
+            </div>
+
+            <div class="form-group">
+                <label for="productCategory">Категория</label>
+                <select id="productCategory">
+                    <option value="films">Плёнки</option>
+                    <option value="accessories">Аксессуары</option>
+                    <option value="merch">Мерч</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="productDescription">Описание</label>
+                <textarea id="productDescription" rows="3" placeholder="Глянцевая плёнка для тёмных авто..."></textarea>
+            </div>
+
+            <div class="form-group form-group--checkbox">
+                <label>
+                    <input type="checkbox" id="productActive" checked>
+                    <span>Активен (показывать на сайте)</span>
+                </label>
+            </div>
+
+            <div class="admin-modal__actions">
+                <button type="button" class="btn btn-outline" id="productCancel">Отмена</button>
+                <button type="submit" class="btn btn-primary" id="productSubmit">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- МОДАЛКА: ПОДТВЕРЖДЕНИЕ УДАЛЕНИЯ -->
+<div class="admin-modal-overlay" id="deleteModal">
+    <div class="admin-modal admin-modal--small">
+        <button class="admin-modal__close" id="deleteModalClose">&times;</button>
+        <div class="confirm-icon">🗑️</div>
+        <h2 class="admin-modal__title" id="deleteModalTitle">Удалить?</h2>
+        <p class="confirm-text" id="deleteModalText">Это действие нельзя отменить.</p>
+
+        <div class="admin-modal__actions">
+            <button type="button" class="btn btn-outline" id="deleteCancel">Отмена</button>
+            <button type="button" class="btn btn-primary" id="deleteConfirm">Удалить</button>
+        </div>
+    </div>
+</div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

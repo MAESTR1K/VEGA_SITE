@@ -1,0 +1,896 @@
+/* ============================================================
+   БАЗА
+   ============================================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    /* Фон */
+    --bg: #1a1a1a;              /* был #0d0d0d — теперь светлее */
+    --bg-2: #242424;            /* был #141414 */
+    --bg-3: #2e2e2e;            /* был #1c1c1c */
+
+    /* Границы — чуть заметнее */
+    --border: rgba(255, 255, 255, 0.1);
+    --border-hover: rgba(255, 255, 255, 0.2);
+
+    /* Текст — светлее и читаемее */
+    --text: #ffffff;
+    --text-2: rgba(255, 255, 255, 0.85);   /* был 0.6 */
+    --text-3: rgba(255, 255, 255, 0.55);   /* был 0.4 */
+
+    /* Акцент */
+    --accent: #fa553f;
+    --accent-2: #ef2f15;
+
+    /* Статусы */
+    --success: #25D366;
+    --warning: #f0b400;
+    --info: #0088cc;
+}
+
+html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ============================================================
+   ЛОГИН
+   ============================================================ */
+.login-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px;
+    background: radial-gradient(circle at top right, rgba(250, 85, 63, 0.08), transparent 60%), var(--bg);
+}
+
+.login-box {
+    width: 100%;
+    max-width: 420px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 40px 32px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+}
+
+.login-box__logo {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.logo-mark {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    color: #fff;
+}
+
+.logo-mark .accent { color: var(--accent); }
+
+.logo-sub {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-3);
+    margin-top: 4px;
+}
+
+.login-box__title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.login-box__subtitle {
+    font-size: 0.9rem;
+    color: var(--text-3);
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.login-form .form-group {
+    margin-bottom: 16px;
+}
+
+.login-form label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-3);
+    margin-bottom: 6px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 14px 18px;
+    background: var(--bg-3);
+    border: 2px solid transparent;
+    border-radius: 14px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.25s;
+}
+
+.login-form input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--bg-2);
+    box-shadow: 0 0 0 4px rgba(250, 85, 63, 0.1);
+}
+
+.login-error {
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: rgba(250, 85, 63, 0.1);
+    border: 1px solid rgba(250, 85, 63, 0.3);
+    border-radius: 12px;
+    color: #ff8b7a;
+    font-size: 0.9rem;
+    text-align: center;
+    display: none;
+}
+
+.login-error.visible { display: block; }
+
+.login-box__footer {
+    text-align: center;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+}
+
+.login-box__footer a {
+    font-size: 0.85rem;
+    color: var(--text-3);
+    transition: color 0.2s;
+}
+
+.login-box__footer a:hover { color: var(--accent); }
+
+/* ============================================================
+   КНОПКИ
+   ============================================================ */
+.btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    transition: all 0.25s;
+    text-align: center;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(250, 85, 63, 0.3);
+}
+
+.btn-primary:hover {
+    background: var(--accent-2);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(250, 85, 63, 0.4);
+}
+
+.btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-block { width: 100%; padding: 16px; font-size: 1rem; }
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    border-radius: 40px;
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-2);
+    border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+    background: var(--bg-3);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-danger {
+    background: transparent;
+    color: #ff8b7a;
+    border: 1px solid rgba(250, 85, 63, 0.3);
+}
+
+.btn-danger:hover {
+    background: rgba(250, 85, 63, 0.1);
+    border-color: var(--accent);
+}
+
+/* ============================================================
+   ШАПКА АДМИНКИ
+   ============================================================ */
+.admin-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(51, 51, 51, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+}
+
+.admin-header__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.admin-header__logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.2rem;
+    font-weight: 900;
+}
+
+.admin-header__logo .accent { color: var(--accent); }
+
+.admin-header__badge {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-3);
+    padding: 4px 10px;
+    background: var(--bg-3);
+    border-radius: 50px;
+}
+
+.admin-header__right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.admin-header__user {
+    font-size: 0.9rem;
+    color: var(--text-2);
+}
+
+.admin-header__user strong {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* ============================================================
+   ОСНОВНОЙ КОНТЕНТ
+   ============================================================ */
+.admin-main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 32px;
+}
+
+.admin-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+}
+
+.admin-tab {
+    padding: 12px 24px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    color: var(--text-2);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.admin-tab:hover {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.admin-tab.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(250, 85, 63, 0.3);
+}
+
+.admin-tab__count {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.admin-tab.active .admin-tab__count {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* ============================================================
+   СТАТИСТИКА
+   ============================================================ */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.stat-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 24px;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: transparent;
+}
+
+.stat-card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.stat-card__label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-3);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.stat-card__value {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+}
+
+.stat-card__sub {
+    font-size: 0.85rem;
+    color: var(--text-3);
+    margin-top: 6px;
+}
+
+.stat-card__sub span {
+    color: var(--text);
+    font-weight: 700;
+}
+
+.stat-card--accent::before { background: var(--accent); }
+.stat-card--accent .stat-card__value { color: var(--accent); }
+
+.stat-card--success::before { background: var(--success); }
+.stat-card--success .stat-card__value { color: var(--success); }
+
+.stat-card--warning::before { background: var(--warning); }
+.stat-card--warning .stat-card__value { color: var(--warning); }
+
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    .stat-card { padding: 18px; }
+    .stat-card__value { font-size: 1.5rem; }
+}
+
+/* ============================================================
+   СПИСКИ (заказы, заявки, товары)
+   ============================================================ */
+.admin-panel {
+    display: none;
+}
+
+.admin-panel.active {
+    display: block;
+    animation: panelFade 0.3s ease;
+}
+
+@keyframes panelFade {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.admin-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.admin-item {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 24px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 24px;
+    align-items: center;
+    transition: all 0.25s;
+}
+
+.admin-item:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: var(--bg-3);
+}
+
+.admin-item__id {
+    font-size: 0.85rem;
+    color: var(--text-3);
+    font-weight: 700;
+    padding: 6px 12px;
+    background: var(--bg-3);
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+.admin-item__body {
+    min-width: 0;
+}
+
+.admin-item__title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+}
+
+.admin-item__meta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+    color: var(--text-3);
+    margin-bottom: 8px;
+}
+
+.admin-item__meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.admin-item__details {
+    font-size: 0.85rem;
+    color: var(--text-2);
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border);
+}
+
+.admin-item__details ul {
+    list-style: none;
+    padding: 0;
+    margin: 4px 0 0 0;
+}
+
+.admin-item__details li {
+    padding: 2px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.admin-item__actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.admin-item__total {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--accent);
+    margin-right: 8px;
+    white-space: nowrap;
+}
+
+/* ============================================================
+   СТАТУСЫ
+   ============================================================ */
+.status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status--new { background: rgba(0, 136, 204, 0.15); color: #4fb3e8; }
+.status--processing { background: rgba(240, 180, 0, 0.15); color: var(--warning); }
+.status--shipped { background: rgba(160, 100, 255, 0.15); color: #b794f6; }
+.status--done { background: rgba(37, 211, 102, 0.15); color: var(--success); }
+.status--canceled { background: rgba(250, 85, 63, 0.15); color: #ff8b7a; }
+
+/* ============================================================
+   SELECT
+   ============================================================ */
+.status-select {
+    padding: 8px 14px;
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    border-radius: 40px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.status-select:hover { border-color: var(--accent); }
+
+.status-select:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+/* ============================================================
+   ПУСТОЕ СОСТОЯНИЕ
+   ============================================================ */
+.admin-empty {
+    text-align: center;
+    padding: 60px 24px;
+    background: var(--bg-2);
+    border: 1px dashed var(--border);
+    border-radius: 20px;
+    color: var(--text-3);
+}
+
+.admin-empty__icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.admin-empty__text {
+    font-size: 1rem;
+}
+
+/* ============================================================
+   ЗАГРУЗКА
+   ============================================================ */
+.admin-loading {
+    text-align: center;
+    padding: 60px 24px;
+    color: var(--text-3);
+}
+
+.admin-loading::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-bottom: 12px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================================
+   ТОВАРЫ — форма добавления
+   ============================================================ */
+.admin-actions-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.admin-actions-bar__title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* ============================================================
+   ТОСТЫ
+   ============================================================ */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--bg-3);
+    color: #fff;
+    padding: 16px 24px;
+    border-radius: 14px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    font-size: 0.95rem;
+    font-weight: 500;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    max-width: 400px;
+    border: 1px solid var(--border);
+}
+
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast--success { border-left: 4px solid var(--success); }
+.toast--error { border-left: 4px solid var(--accent); }
+.toast--info { border-left: 4px solid var(--info); }
+
+/* ============================================================
+   АДАПТИВ
+   ============================================================ */
+@media (max-width: 768px) {
+    .admin-header__inner { padding: 0 16px; }
+    .admin-header__badge { display: none; }
+    .admin-header__user span { display: none; }
+    .admin-main { padding: 20px 16px; }
+
+    .admin-item {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .admin-item__actions {
+        justify-content: flex-start;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-card { padding: 18px; }
+    .stat-card__value { font-size: 1.6rem; }
+
+    .admin-tabs { gap: 6px; }
+    .admin-tab { padding: 10px 16px; font-size: 0.8rem; }
+
+    .toast {
+        bottom: 20px;
+        right: 16px;
+        left: 16px;
+        max-width: none;
+    }
+}
+
+
+/* ============================================================
+   МОДАЛКА ТОВАРА
+   ============================================================ */
+.admin-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.admin-modal-overlay.active {
+    display: flex;
+}
+
+.admin-modal {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 32px;
+    max-width: 520px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+    animation: modalSlide 0.25s ease;
+}
+
+@keyframes modalSlide {
+    from { opacity: 0; transform: scale(0.95) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.admin-modal__close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--text-3);
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.admin-modal__close:hover { color: var(--accent); }
+
+.admin-modal__title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #fff;
+}
+
+.admin-modal__actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    justify-content: flex-end;
+}
+
+.admin-modal__actions .btn {
+    min-width: 120px;
+}
+
+/* ============================================================
+   ФОРМА
+   ============================================================ */
+.admin-form .form-group {
+    margin-bottom: 16px;
+}
+
+.admin-form label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-3);
+    margin-bottom: 6px;
+}
+
+.admin-form input[type="text"],
+.admin-form input[type="number"],
+.admin-form textarea,
+.admin-form select {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--bg-3);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: all 0.25s;
+}
+
+.admin-form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.admin-form input:focus,
+.admin-form textarea:focus,
+.admin-form select:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--bg-2);
+    box-shadow: 0 0 0 4px rgba(250, 85, 63, 0.1);
+}
+
+.admin-form select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23ffffff' fill-opacity='0.6' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+}
+
+.admin-form .form-group--checkbox label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 0.9rem;
+    color: var(--text-2);
+    cursor: pointer;
+    padding: 12px 16px;
+    background: var(--bg-3);
+    border-radius: 12px;
+    transition: all 0.25s;
+}
+
+.admin-form .form-group--checkbox label:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.admin-form .form-group--checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
+/* ============================================================
+   МОДАЛКА ПОДТВЕРЖДЕНИЯ
+   ============================================================ */
+.admin-modal--small {
+    max-width: 420px;
+    text-align: center;
+    padding: 40px 32px 32px;
+}
+
+.confirm-icon {
+    font-size: 3.5rem;
+    margin-bottom: 16px;
+    display: block;
+    line-height: 1;
+}
+
+.confirm-text {
+    font-size: 0.95rem;
+    color: var(--text-3);
+    margin-bottom: 28px;
+    line-height: 1.5;
+}
+
+.admin-modal--small .admin-modal__actions {
+    justify-content: center;
+}
+
+.admin-modal--small .admin-modal__actions .btn {
+    flex: 1;
+    min-width: 0;
+}
