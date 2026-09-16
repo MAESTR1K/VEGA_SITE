@@ -1,9 +1,51 @@
 const express = require('express');
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
 const pool = require('../db');
 
 const { requireAdmin } = require('../middleware/auth');
 
 const router = express.Router();
+
+// ============================================================
+// НАСТРОЙКА ЗАГРУЗКИ ФАЙЛОВ
+// ============================================================
+const UPLOADS_DIR = path.join(__dirname, '..', '..', 'uploads');
+
+// Создаём папку, если её нет
+if (!fs.existsSync(UPLOADS_DIR)) {
+    fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+}
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, UPLOADS_DIR);
+    },
+    filename: (req, file, cb) => {
+        // Уникальное имя: timestamp + случайное число + оригинальное расширение
+        const ext = path.extname(file.originalname).toLowerCase();
+        const uniqueName = `${Date.now()}-${Math.round(Math.random() * 1e9)}${ext}`;
+        cb(null, uniqueName);
+    }
+});
+
+const upload = multer({
+    storage,
+    limits: { fileSize: 5 * 1024 * 1024 }, // 5 МБ
+    fileFilter: (req, file, cb) => {
+        const allowed = /jpeg|jpg|png|webp|gif/;
+        const extOk = allowed.test(path.extname(file.originalname).toLowerCase());
+        const mimeOk = allowed.test(file.mimetype);
+
+        if (extOk && mimeOk) {
+            cb(null, true);
+        } else {
+            cb(new Error('Только изображения: jpeg, jpg, png, webp, gif'));
+        }
+    }
+});
+
 // ============================================================
 // ХЕЛПЕР: транслитерация + slug
 // ============================================================
@@ -257,6 +299,29 @@ router.get('/users', async (req, res) => {
     } catch (err) {
         console.error('Ошибка загрузки пользователей:', err);
         res.status(500).json({ error: 'Ошибка сервера' });
+    }
+});
+
+// ============================================================
+// ЗАГРУЗКА ИЗОБРАЖЕНИЯ
+// ============================================================
+router.post('/upload', upload.single('image'), (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ error: 'Файл не загружен' });
+        }
+
+        // Возвращаем путь относительно корня проекта
+        const filePath = `/uploads/${req.file.filename}`;
+
+        res.json({
+            success: true,
+            path: filePath,
+            filename: req.file.filename
+        });
+    } catch (err) {
+        console.error('❌ Ошибка загрузки:', err);
+        res.status(500).json({ error: err.message });
     }
 });
 

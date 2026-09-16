@@ -14,6 +14,9 @@ app.use(express.urlencoded({ extended: true }));
 // Раздача статики — фронт лежит на уровень выше
 app.use(express.static(path.join(__dirname, '..')));
 
+// Раздача загруженных изображений
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
+
 // API-роуты
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/products', require('./routes/products'));

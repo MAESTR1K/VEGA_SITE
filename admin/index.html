@@ -70,12 +70,31 @@
 
         <!-- ПАНЕЛЬ: ЗАКАЗЫ -->
         <section class="admin-panel active" data-panel="orders">
+            <div class="admin-filters">
+                <input type="text" class="admin-search" id="ordersSearch" placeholder="🔍 Поиск по имени, телефону или email...">
+                <select class="admin-filter-select" id="ordersFilter">
+                    <option value="all">Все статусы</option>
+                    <option value="new">Новые</option>
+                    <option value="processing">В обработке</option>
+                    <option value="shipped">Отправленные</option>
+                    <option value="done">Выполненные</option>
+                    <option value="canceled">Отменённые</option>
+                </select>
+            </div>
             <div class="admin-loading" id="ordersLoading">Загрузка заказов...</div>
             <div class="admin-list" id="ordersList"></div>
         </section>
 
         <!-- ПАНЕЛЬ: ЗАЯВКИ -->
         <section class="admin-panel" data-panel="contacts">
+            <div class="admin-filters">
+                <input type="text" class="admin-search" id="contactsSearch" placeholder="🔍 Поиск по имени или телефону...">
+                <select class="admin-filter-select" id="contactsFilter">
+                    <option value="all">Все статусы</option>
+                    <option value="new">Новые</option>
+                    <option value="processed">Обработанные</option>
+                </select>
+            </div>
             <div class="admin-loading" id="contactsLoading">Загрузка заявок...</div>
             <div class="admin-list" id="contactsList"></div>
         </section>
@@ -85,6 +104,20 @@
             <div class="admin-actions-bar">
                 <div class="admin-actions-bar__title">Все товары</div>
                 <button class="btn btn-primary btn-sm" id="addProductBtn">+ Добавить товар</button>
+            </div>
+            <div class="admin-filters">
+                <input type="text" class="admin-search" id="productsSearch" placeholder="🔍 Поиск по названию...">
+                <select class="admin-filter-select" id="productsCategoryFilter">
+                    <option value="all">Все категории</option>
+                    <option value="films">Плёнки</option>
+                    <option value="accessories">Аксессуары</option>
+                    <option value="merch">Мерч</option>
+                </select>
+                <select class="admin-filter-select" id="productsStatusFilter">
+                    <option value="all">Все</option>
+                    <option value="active">Активные</option>
+                    <option value="hidden">Скрытые</option>
+                </select>
             </div>
             <div class="admin-loading" id="productsLoading">Загрузка товаров...</div>
             <div class="admin-list" id="productsList"></div>
@@ -112,8 +145,20 @@
             </div>
 
             <div class="form-group">
-                <label for="productImg">Путь к изображению</label>
-                <input type="text" id="productImg" placeholder="фото/plenki/190prem.jpg">
+                <label for="productImgFile">Изображение</label>
+                <div class="file-upload" id="fileUploadWrapper">
+                    <input type="file" id="productImgFile" accept="image/*">
+                    <label for="productImgFile" class="file-upload__label">
+                        <span class="file-upload__icon">📷</span>
+                        <span class="file-upload__text" id="fileUploadText">Выбрать файл</span>
+                    </label>
+                    <div class="file-upload__preview" id="filePreview" style="display:none;">
+                        <img id="filePreviewImg" src="" alt="Превью">
+                        <button type="button" class="file-upload__remove" id="fileRemoveBtn">×</button>
+                    </div>
+                </div>
+                <input type="hidden" id="productImg" value="">
+                <small class="form-hint">JPG, PNG, WebP, GIF — до 5 МБ</small>
             </div>
 
             <div class="form-group">
