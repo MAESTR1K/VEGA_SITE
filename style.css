@@ -426,6 +426,34 @@ img { max-width:100%; display:block; }
    ============================================================ */
 .footer { background:#2d2d2d; color:rgba(255,255,255,.6); padding:48px 0; }
 .footer__inner { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px; }
+/* ============================================================
+   ПОДВАЛ — ЛОГО
+   ============================================================ */
+.footer__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;              /* отступ между лого и текстом */
+    text-decoration: none;
+    margin-bottom: 8px;
+}
+
+.footer__logo img {
+    height: 32px;
+    width: auto;
+    display: block;
+    flex-shrink: 0;
+}
+
+.footer__logo .logo__text {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    white-space: nowrap;    /* чтобы текст не переносился */
+}
+
+.footer__logo .logo__accent {
+    color: #fa553f;
+}
 .footer__brand .logo__text { color:#fff; }
 .footer__brand .logo__accent { color:#fa553f; }
 .footer__brand p { font-size:.85rem; margin-top:4px; }
@@ -595,6 +623,7 @@ img { max-width:100%; display:block; }
     /* ПОДВАЛ */
     .footer { padding:32px 0; }
     .footer__inner { flex-direction:column; text-align:center; gap:24px; }
+    
     .footer__brand { display:flex; flex-direction:column; align-items:center; gap:8px; }
     .footer__brand .logo__text { font-size:1.3rem; }
     .footer__brand p { font-size:0.8rem; }
