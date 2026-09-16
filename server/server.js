@@ -20,17 +20,25 @@ app.use('/api/products', require('./routes/products'));
 app.use('/api/orders', require('./routes/orders'));
 app.use('/api/contacts', require('./routes/contacts'));
 app.use('/api/colors', require('./routes/colors'));
+app.use('/api/admin', require('./routes/admin'));
 
 // Health check
 app.get('/api/health', (req, res) => {
     res.json({ status: 'ok', time: new Date().toISOString() });
 });
 
-// SPA-фолбэк — всё, что не /api, отдаём index.html
+// SPA-фолбэк
 app.get('*', (req, res) => {
     if (req.path.startsWith('/api')) {
         return res.status(404).json({ error: 'Not found' });
     }
+
+    // /admin/ и /admin — отдаём страницу логина админки
+    if (req.path === '/admin' || req.path === '/admin/') {
+        return res.sendFile(path.join(__dirname, '..', 'admin', 'login.html'));
+    }
+
+    // Всё остальное — index.html
     res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
 
