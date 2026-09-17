@@ -1064,4 +1064,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initTilt();
 });
 
+
+
+
+
+
 console.log('VEGA PPF — сайт загружен!');

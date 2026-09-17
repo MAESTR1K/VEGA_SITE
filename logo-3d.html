@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEGA PPF — 3D Логотип</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #0d0d0d;
+            overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+        }
+
+        #logo-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .logo-caption {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .logo-caption__title {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+
+        .logo-caption__title span {
+            color: #fa553f;
+        }
+
+        .logo-caption__subtitle {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .logo-caption__title { font-size: 1.4rem; }
+            .logo-caption__subtitle { font-size: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="logo-container"></div>
+
+    <div class="logo-caption">
+        <div class="logo-caption__title">VEGA <span>PPF</span></div>
+        <div class="logo-caption__subtitle">Paint Protection Film</div>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        // ============================================================
+        // НАСТРОЙКИ — меняй тут
+        // ============================================================
+        const LOGO_PATH = 'фото/logo/logo.png.webp';  // путь к PNG
+        const LOGO_HEIGHT = 1.8;                      // высота в 3D-сцене
+        const LOGO_ASPECT = 0.72;                     // ширина / высота (подгони)
+        const SHOW_CAPTION = true;                    // показывать текст внизу
+
+        // ============================================================
+        // СЦЕНА
+        // ============================================================
+        const container = document.getElementById('logo-container');
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x0d0d0d);
+
+        // ============================================================
+        // КАМЕРА
+        // ============================================================
+        const camera = new THREE.PerspectiveCamera(35, width / height, 0.1, 100);
+        camera.position.set(0, 0, 4);
+
+        // ============================================================
+        // РЕНДЕР
+        // ============================================================
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(width, height);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.2;
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
+        container.appendChild(renderer.domElement);
+
+        // ============================================================
+        // УПРАВЛЕНИЕ
+        // ============================================================
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.enableZoom = false;
+        controls.enablePan = false;
+        controls.minPolarAngle = Math.PI / 3;
+        controls.maxPolarAngle = Math.PI / 1.5;
+
+        // ============================================================
+        // СВЕТ
+        // ============================================================
+        const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambient);
+
+        const keyLight = new THREE.DirectionalLight(0xffffff, 2);
+        keyLight.position.set(3, 3, 5);
+        scene.add(keyLight);
+
+        const rimLight = new THREE.DirectionalLight(0xfa553f, 1.5);
+        rimLight.position.set(-3, 1, -3);
+        scene.add(rimLight);
+
+        const backLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        backLight.position.set(0, -2, -5);
+        scene.add(backLight);
+
+        // ============================================================
+        // ЛОГОТИП
+        // ============================================================
+        const logoGroup = new THREE.Group();
+        scene.add(logoGroup);
+
+        // Загружаем текстуру
+        const textureLoader = new THREE.TextureLoader();
+        const logoTexture = textureLoader.load(LOGO_PATH);
+
+        // Качество текстуры
+        logoTexture.colorSpace = THREE.SRGBColorSpace;
+        logoTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+        logoTexture.minFilter = THREE.LinearMipmapLinearFilter;
+        logoTexture.magFilter = THREE.LinearFilter;
+        logoTexture.generateMipmaps = true;
+
+        // ---- Плоскость с логотипом ----
+        const logoWidth = LOGO_HEIGHT * LOGO_ASPECT;
+
+        const frontGeometry = new THREE.PlaneGeometry(logoWidth, LOGO_HEIGHT);
+
+        const logoMaterial = new THREE.MeshBasicMaterial({
+            map: logoTexture,
+            transparent: true,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false,
+            side: THREE.DoubleSide
+        });
+
+        const logoMesh = new THREE.Mesh(frontGeometry, logoMaterial);
+        logoGroup.add(logoMesh);
+
+        // ============================================================
+        // ТЕКСТ ВНИЗУ
+        // ============================================================
+        const caption = document.querySelector('.logo-caption');
+        if (!SHOW_CAPTION && caption) caption.style.display = 'none';
+
+        // ============================================================
+        // АНИМАЦИЯ
+        // ============================================================
+        let time = 0;
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            time += clock.getDelta();
+
+            // Покачивание влево-вправо
+            logoGroup.rotation.y = Math.sin(time * 0.6) * 0.5;
+
+            // Плавное парение
+            logoGroup.position.y = Math.sin(time * 1.2) * 0.08;
+
+            controls.update();
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // ============================================================
+        // РЕСАЙЗ
+        // ============================================================
+        window.addEventListener('resize', () => {
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+            renderer.setSize(w, h);
+        });
+
+        console.log('🚗 VEGA PPF — 3D Логотип');
+    </script>
+
+</body>
+</html>
