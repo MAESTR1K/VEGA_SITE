@@ -130,7 +130,7 @@ vega-ppf/
 ## 📸 Скриншоты
 
 ### Главная
-[![Главная](https://github.com/MAESTR1K/VEGA_SITE/issues/1#issue-5681666727)
+[![Главная](админ.png)
 
 ### 3D-конфигуратор
 ![Конфигуратор](https://github.com/MAESTR1K/VEGA_SITE/issues/2#issue-5681676895)
