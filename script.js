@@ -320,9 +320,21 @@ async function loadProductsFromAPI() {
 
     productsLoadingPromise = (async () => {
         try {
-            const res = await fetch('/api/products');
-            if (!res.ok) throw new Error('Ошибка загрузки товаров');
-            const data = await res.json();
+            // Демо-режим: пробуем API, если нет — берём из JSON
+            let data;
+            try {
+                const res = await fetch('/api/products');
+                if (res.ok) {
+                    data = await res.json();
+                } else {
+                    throw new Error('API недоступно');
+                }
+            } catch {
+                console.log('ℹ️ API недоступно, загружаем из data/products.json');
+                const res = await fetch('data/products.json');
+                if (!res.ok) throw new Error('Не удалось загрузить products.json');
+                data = await res.json();
+            }
 
             PRODUCTS = data.map(p => ({
                 id: p.id,
@@ -334,11 +346,10 @@ async function loadProductsFromAPI() {
             }));
 
             productsLoaded = true;
-            console.log(`✅ Загружено ${PRODUCTS.length} товаров из API`);
+            console.log(`✅ Загружено ${PRODUCTS.length} товаров`);
             return PRODUCTS;
         } catch (err) {
             console.error('❌ Не удалось загрузить товары:', err);
-            // Фолбэк — пустой массив
             PRODUCTS = [];
             productsLoaded = true;
             return PRODUCTS;
@@ -347,7 +358,6 @@ async function loadProductsFromAPI() {
 
     return productsLoadingPromise;
 }
-
 // Автозагрузка при старте
 loadProductsFromAPI();
 
@@ -944,7 +954,7 @@ if (scrollProgress) {
 
 
 // ============================================================
-// СТРАНИЦА ОФОРМЛЕНИЯ ЗАКАЗА
+// СТРАНИЦА ОФОРМЛЕНИЯ Заказа
 // ============================================================
 const checkoutForm = document.getElementById('checkoutForm');
 const checkoutItems = document.getElementById('checkoutItems');
@@ -1063,9 +1073,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initGallery('historyGalleryTrack', 'historyGalleryPrev', 'historyGalleryNext', 'historyGalleryDots');
     initTilt();
 });
-
-
-
 
 
 
