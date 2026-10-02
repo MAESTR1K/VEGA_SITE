@@ -130,13 +130,13 @@ vega-ppf/
 ## 📸 Скриншоты
 
 ### Главная
-[![Главная](https://github.com/MAESTR1K/VEGA_SITE/issues/1)
+[![Главная](https://github.com/MAESTR1K/VEGA_SITE/issues/1#issue-5681666727)
 
 ### 3D-конфигуратор
-![Конфигуратор](https://github.com/MAESTR1K/VEGA_SITE/issues/2)
+![Конфигуратор](https://github.com/MAESTR1K/VEGA_SITE/issues/2#issue-5681676895)
 
 ### Админ-панель
-![Админка](https://github.com/MAESTR1K/VEGA_SITE/issues/3)
+![Админка](https://github.com/MAESTR1K/VEGA_SITE/issues/3#issue-5681680258)
 
 ---
 
@@ -148,6 +148,6 @@ vega-ppf/
 
 <div align="center">
 
-**Сделано с ❤️ Максимом Масловым**
+**Сделано Максимом Масловым**
 
 </div>
