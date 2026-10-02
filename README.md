@@ -130,15 +130,13 @@ vega-ppf/
 ## 📸 Скриншоты
 
 ### Главная
-![Главная](https://via.placeholder.com/800x400/0d0d0d/fa553f?text=VEGA+PPF+-+Главная)
+[![Главная](https://github.com/MAESTR1K/VEGA_SITE/issues/1)
 
 ### 3D-конфигуратор
-![Конфигуратор](https://via.placeholder.com/800x400/0d0d0d/fa553f?text=3D+Конфигуратор)
+![Конфигуратор](https://github.com/MAESTR1K/VEGA_SITE/issues/2)
 
 ### Админ-панель
-![Админка](https://via.placeholder.com/800x400/0d0d0d/fa553f?text=Админ-панель)
-
-> ⚠️ Замени плейсхолдеры на реальные скриншоты после деплоя
+![Админка](https://github.com/MAESTR1K/VEGA_SITE/issues/3)
 
 ---
 
