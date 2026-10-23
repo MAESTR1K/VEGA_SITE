@@ -4,7 +4,7 @@
 
 **Сайт российского бренда антигравийных плёнок с 3D-конфигуратором**
 
-[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-00FF00?style=for-the-badge)](https://maestr1k.github.io/vega-ppf/)
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-00FF00?style=for-the-badge)](https://maestr1k.github.io/VEGA_SITE/)
 [![GitHub](https://img.shields.io/badge/📦_GitHub-181717?style=for-the-badge&logo=github)](https://github.com/MAESTR1K/vega-ppf)
 
 </div>
